@@ -9,10 +9,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     public float dashSpeed = 10f;
     private bool isDashing = false;
+    [SerializeField]
+    public float dashTime = 0.5f;
+
+    public ParticleSystem part;
     // Start is called before the first frame update
     void Start()
     {
-        
+
+
     }
 
     // Update is called once per frame
@@ -40,16 +45,18 @@ public class PlayerMovement : MonoBehaviour
         float _vertical = Input.GetAxis("Vertical");
         Rigidbody rb = GetComponent<Rigidbody>();
         Vector3 dashDirection = new Vector3(_horizontal, 0, _vertical);
-        float dashTime = 0.5f;
 
+        part.Play();
+        part.enableEmission = true;
         float startTime = Time.time;
         while (Time.time - startTime < dashTime)
         {
             rb.velocity = dashDirection * dashSpeed;
             yield return null;
         }
-
         rb.velocity = Vector3.zero;
+        part.enableEmission = false;
+        part.Stop();
         isDashing = false;
     }
 }
