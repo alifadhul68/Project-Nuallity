@@ -13,10 +13,12 @@ public class PlayerMovement : MonoBehaviour
     public float dashTime = 0.5f;
 
     public ParticleSystem part;
+    private ParticleSystem.EmissionModule partEmit;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        partEmit = part.emission;
 
     }
 
@@ -46,17 +48,18 @@ public class PlayerMovement : MonoBehaviour
         Rigidbody rb = GetComponent<Rigidbody>();
         Vector3 dashDirection = new Vector3(_horizontal, 0, _vertical);
 
-        part.Play();
-        part.enableEmission = true;
+        
+        partEmit.enabled = true;
+        
         float startTime = Time.time;
         while (Time.time - startTime < dashTime)
         {
+            part.Emit(2);
             rb.velocity = dashDirection * dashSpeed;
             yield return null;
         }
         rb.velocity = Vector3.zero;
-        part.enableEmission = false;
-        part.Stop();
+        partEmit.enabled = false;
         isDashing = false;
     }
 }
