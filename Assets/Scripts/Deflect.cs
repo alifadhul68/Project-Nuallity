@@ -10,7 +10,7 @@ public class Deflect : MonoBehaviour
     private bool isDeflecting = false;
     [SerializeField]
     public float deflectTime = 1f;
-
+    public GameObject gOb;
     public ParticleSystem part;
     private ParticleSystem.EmissionModule partEmit;
 
@@ -19,6 +19,7 @@ public class Deflect : MonoBehaviour
     void Start()
     {
         partEmit = part.emission;
+        
 
     }
 
@@ -36,7 +37,7 @@ public class Deflect : MonoBehaviour
         isDeflecting = true;
 
         partEmit.enabled = true;
-        
+        gOb.SetActive(true);
 
         float startTime = Time.time;
         while (Time.time - startTime < deflectTime)
@@ -47,6 +48,7 @@ public class Deflect : MonoBehaviour
         }
 
         partEmit.enabled = false;
+        gOb.SetActive(false);
         isDeflecting = false;
     }
 }
