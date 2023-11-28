@@ -13,5 +13,10 @@ MonoBehaviour:
   m_Name: Toturial
   m_EditorClassIdentifier: 
   dialogue:
-  - Hwo you doign
-  - dfffkdld
+  - NICE!
+  - Hello, how ya' doing... wait no. Hello nice to meet you. I am your guide in the
+    game. My name is CRISTOS COLUMBUS. You know, I am his brother.
+  - well enough with the chitchat. Let's start with your movements... Like anyother
+    normal game. WASD is the movement keys.
+  - Now try using your skills. Space for dashing and right-click for deflecting.
+  - Let's go! since you are done with the controls. here are some enemies.
