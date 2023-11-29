@@ -11,14 +11,11 @@ public class Deflect : MonoBehaviour
     [SerializeField]
     public float deflectTime = 1f;
     public GameObject gOb;
-    public ParticleSystem part;
-    private ParticleSystem.EmissionModule partEmit;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        partEmit = part.emission;
         
 
     }
