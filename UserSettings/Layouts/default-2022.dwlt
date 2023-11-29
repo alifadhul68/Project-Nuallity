@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1858
     height: 1037
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Hierarchy
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 39
+  controlID: 102
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -268,8 +268,8 @@ MonoBehaviour:
     y: 0
     width: 1023
     height: 585
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -323,7 +323,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Dialogues
+    - Assets/Scripts
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -331,16 +331,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Dialogues
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\smoha\OneDrive\Desktop\eerls\Unity\Project-Nuallity
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 381f0000
-    m_LastClickedID: 7992
-    m_ExpandedIDs: 00000000401f0000e65d0000e85d0000ea5d0000ec5d000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 175}
+    m_SelectedIDs: 2c5c0000
+    m_LastClickedID: 23596
+    m_ExpandedIDs: 00000000105c0000125c0000145c0000165c00002e5c0000565c0000585c00007e600000826000008e6000009a60000006720000087200000a7200000c7200000e72000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -368,7 +368,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000e65d0000e85d0000ea5d0000ec5d0000
+    m_ExpandedIDs: 00000000105c0000125c0000145c0000165c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -508,9 +508,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 505d0000
-      m_LastClickedID: 23888
-      m_ExpandedIDs: 26f6ffff285d0000505d0000
+      m_SelectedIDs: 860f0000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 3e49ffff4449ffff9c49ffff646effff52eaffff58eaffff70eaffff0aeeffff9ef5ffffeaf5ffff3af8ffffbcf8ffff00fbffff4e830000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -845,7 +845,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 48, y: 10.399963}
+      snapOffset: {x: 48, y: 10}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: UnityEditor.SceneViewCameraOverlay
@@ -864,9 +864,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 476.37866, y: 110.00076, z: 611.34265}
+    m_Target: {x: -42.241035, y: -68.64074, z: 122.83061}
     speed: 2
-    m_Value: {x: 476.37866, y: 110.00076, z: 611.34265}
+    m_Value: {x: -42.241035, y: -68.64074, z: 122.83061}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -912,20 +912,20 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.04888025, y: 0.0009080665, z: -0.00005843386, w: -0.99882257}
+    m_Target: {x: -0.29173848, y: 0.1697027, z: -0.052485917, w: -0.940023}
     speed: 2
-    m_Value: {x: -0.04887936, y: 0.00090804993, z: -0.000058432794, w: -0.99880433}
+    m_Value: {x: -0.2902834, y: 0.16975512, z: -0.0522231, w: -0.9403146}
   m_Size:
-    m_Target: 567.6651
+    m_Target: 85.8308
     speed: 2
-    m_Value: 567.6651
+    m_Value: 85.8308
   m_Ortho:
     m_Target: 0
     speed: 2
     m_Value: 0
   m_CameraSettings:
-    m_Speed: 1
-    m_SpeedNormalized: 0.5
+    m_Speed: 1.0005
+    m_SpeedNormalized: 0.49999997
     m_SpeedMin: 0.001
     m_SpeedMax: 2
     m_EasingEnabled: 1
