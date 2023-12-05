@@ -369,6 +369,7 @@
 "Assets/Scripts/MainMenu/LoadPrefs.cs"
 "Assets/Scripts/MainMenu/MenuController.cs"
 "Assets/Scripts/PlayerMovement.cs"
+"Assets/Scripts/SpeedBoost.cs"
 "Assets/Scripts/SpriteToFade.cs"
 "Assets/UnityTechnologies/ParticlePack/EffectExamples/Misc Effects/Scripts/SpawnEffect.cs"
 "Assets/UnityTechnologies/ParticlePack/Shared/Ramps/Runtime/RampAsset.cs"
