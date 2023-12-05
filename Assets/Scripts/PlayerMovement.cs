@@ -11,9 +11,20 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashing = false;
     [SerializeField]
     public float dashTime = 0.5f;
-    
+
     [SerializeField]
     public GameObject SpeedBarier;
+
+    [SerializeField]
+    public float attackCooldown = 1f; // Adjust the cooldown time as needed
+    private float timeSinceLastAttack;
+
+    [SerializeField]
+    private float attackRange = 2f; // The range of the attack
+    [SerializeField]
+    private LayerMask enemyLayer; // Layer to detect enemies
+    [SerializeField]
+    private int attackDamage = 10; // Damage dealt by the attack
 
     public ParticleSystem part;
     private ParticleSystem.EmissionModule partEmit;
@@ -22,18 +33,31 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         partEmit = part.emission;
-
+        timeSinceLastAttack = attackCooldown;
     }
 
     // Update is called once per frame
     void Update()
     {
         handlePlayerInput();
+
+        // Check if the player can attack and trigger attack when the player presses a designated key (e.g., Space)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && timeSinceLastAttack >= attackCooldown)
+        {
+            Attack();
+            timeSinceLastAttack = 0f; // Reset the attack cooldown timer
+        }
+
+        // Update the attack cooldown timer
+        timeSinceLastAttack += Time.deltaTime;
+
+        // Dash mechanism
         if (Input.GetKeyDown(KeyCode.Space) && !isDashing)
         {
             StartCoroutine(Dash());
         }
     }
+
     void handlePlayerInput()
     {
         float _horizontal = Input.GetAxis("Horizontal");
@@ -43,6 +67,29 @@ public class PlayerMovement : MonoBehaviour
         transform.Translate(_movement * movementSpeed * Time.deltaTime, Space.World);
     }
 
+    void Attack()
+    {
+
+        // Implementing attack logic
+        Collider[] hitEnemies = Physics.OverlapSphere(transform.position, attackRange, enemyLayer);
+
+        foreach (var enemyCollider in hitEnemies)
+        {
+            // Get the EnemyAI component from the collider
+            EnemyAI enemyAI = enemyCollider.GetComponent<EnemyAI>();
+
+            // Check if the enemyAI component exists
+            if (enemyAI != null)
+            {
+                // Apply damage to the enemy
+                enemyAI.TakeDamage(attackDamage);
+                Debug.Log("Enemy Hit!!!");
+            }
+        }
+
+    }
+
+
     IEnumerator Dash()
     {
         isDashing = true;
@@ -51,9 +98,8 @@ public class PlayerMovement : MonoBehaviour
         Rigidbody rb = GetComponent<Rigidbody>();
         Vector3 dashDirection = new Vector3(_horizontal, 0, _vertical);
 
-        
         partEmit.enabled = true;
-        
+
         float startTime = Time.time;
         while (Time.time - startTime < dashTime)
         {
@@ -78,11 +124,16 @@ public class PlayerMovement : MonoBehaviour
         float originalSpeed = movementSpeed;
         movementSpeed += boostAmount;
 
-
         yield return new WaitForSeconds(duration);
 
         SpeedBarier.SetActive(false);
         movementSpeed = originalSpeed;
+    }
 
+    // Draw the attack range in the editor
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }
