@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashing = false;
     [SerializeField]
     public float dashTime = 0.5f;
+    
+    [SerializeField]
+    public GameObject SpeedBarier;
 
     public ParticleSystem part;
     private ParticleSystem.EmissionModule partEmit;
@@ -61,5 +64,25 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = Vector3.zero;
         partEmit.enabled = false;
         isDashing = false;
+    }
+
+    public void ApplySpeedBoost(float boostAmount, float duration)
+    {
+        // Apply the speed boost to the player
+        StartCoroutine(SpeedBoostRoutine(boostAmount, duration));
+    }
+
+    private IEnumerator SpeedBoostRoutine(float boostAmount, float duration)
+    {
+        SpeedBarier.SetActive(true);
+        float originalSpeed = movementSpeed;
+        movementSpeed += boostAmount;
+
+
+        yield return new WaitForSeconds(duration);
+
+        SpeedBarier.SetActive(false);
+        movementSpeed = originalSpeed;
+
     }
 }
