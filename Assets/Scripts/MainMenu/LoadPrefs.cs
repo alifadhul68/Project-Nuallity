@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
 public class LoadPrefs : MonoBehaviour
@@ -18,9 +19,15 @@ public class LoadPrefs : MonoBehaviour
     [SerializeField] private TMP_Text brightnesseTextValue = null;
     [SerializeField] private Slider brightnessSlider = null;
     [SerializeField] private Toggle fullScreenTOggle;
+    [SerializeField] private PostProcessProfile brightnessProfile;
+    [SerializeField] private PostProcessLayer layer;
+
+    private AutoExposure exposure;
 
     private void Awake()
     {
+        brightnessProfile.TryGetSettings(out exposure);
+
         if (PlayerPrefs.HasKey("masterVolume"))
         {
             float localVolume = PlayerPrefs.GetFloat("masterVolume");
@@ -38,7 +45,7 @@ public class LoadPrefs : MonoBehaviour
             float localBrightness = PlayerPrefs.GetFloat("masterBrightness");
             brightnesseTextValue.text = localBrightness.ToString("0.0");
             brightnessSlider.value = localBrightness;
-            Screen.brightness = localBrightness;
+            exposure.keyValue.value = localBrightness;
         }
         else
         {
