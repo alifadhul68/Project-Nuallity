@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Rendering.PostProcessing;
 
 public class MenuController : MonoBehaviour
 {
@@ -18,11 +19,21 @@ public class MenuController : MonoBehaviour
     [Header("Graphics Settings")]
     [SerializeField] private TMP_Text brightnesseTextValue = null;
     [SerializeField] private Slider brightnessSlider = null;
-    [SerializeField] private float defaultBrightness = 0.8f;
+    [SerializeField] private float defaultBrightness = 5f;
     [SerializeField] private Toggle fullScreenTOggle;
+
+    [SerializeField] private PostProcessProfile brightnessProfile;
+    [SerializeField] private PostProcessLayer layer;
+
+    private AutoExposure exposure;
 
     private bool _isFullScreen;
     private float _brightnessLevel;
+
+    void Start()
+    {
+        brightnessProfile.TryGetSettings(out exposure);
+    }
 
     public void ExitButton()
     {
@@ -51,7 +62,7 @@ public class MenuController : MonoBehaviour
                 VolumeApply();
                 break;
             case "Graphics":
-                Screen.brightness = defaultBrightness;
+                exposure.keyValue.value = defaultBrightness;
                 brightnessSlider.value = defaultBrightness;
                 brightnesseTextValue.text = defaultBrightness.ToString("0.0");
                 _isFullScreen = true;
@@ -64,7 +75,11 @@ public class MenuController : MonoBehaviour
 
     public void SetBrightness(float brightness)
     {
-        _brightnessLevel = Mathf.Clamp(brightness, 0.0f, 1.0f);
+        if (exposure != null)
+        {
+            exposure.keyValue.value = brightness;
+        }
+        _brightnessLevel = brightness;
         brightnesseTextValue.text = brightness.ToString("0.0");
     }
 
@@ -80,7 +95,7 @@ public class MenuController : MonoBehaviour
         PlayerPrefs.SetInt("masterFullScreen", (_isFullScreen ? 1 :0));
 
         Screen.fullScreen = _isFullScreen;
-        Screen.brightness = _brightnessLevel;
+        exposure.keyValue.value = _brightnessLevel;
 
         Debug.Log("Brightness after setting: " + Screen.brightness);
     }

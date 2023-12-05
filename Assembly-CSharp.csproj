@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\SpriteToFade.cs" />
     <Compile Include="Assets\Scripts\EnemyAI.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\ProximityActivate.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\AdjustBrightnesLevels.cs" />
     <Compile Include="Assets\Scripts\MainMenu\LoadPrefs.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Scripts\SpawnEffect.cs" />

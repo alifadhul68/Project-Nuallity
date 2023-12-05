@@ -364,6 +364,7 @@
 "Assets/Scripts/Deflect.cs"
 "Assets/Scripts/EnemyAI.cs"
 "Assets/Scripts/LerpColor.cs"
+"Assets/Scripts/MainMenu/AdjustBrightnesLevels.cs"
 "Assets/Scripts/MainMenu/LevelSelector.cs"
 "Assets/Scripts/MainMenu/LoadPrefs.cs"
 "Assets/Scripts/MainMenu/MenuController.cs"

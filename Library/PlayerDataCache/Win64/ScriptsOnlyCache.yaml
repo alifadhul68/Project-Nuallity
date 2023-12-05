@@ -8,6 +8,22 @@ ScriptsOnlyBuild:
     - MenuController
     - PlayerMovement
     - ToturialDialogue
+    Unity.Postprocessing.Runtime.dll:
+    - UnityEngine.Rendering.PostProcessing.AmbientOcclusion
+    - UnityEngine.Rendering.PostProcessing.AutoExposure
+    - UnityEngine.Rendering.PostProcessing.Bloom
+    - UnityEngine.Rendering.PostProcessing.ChromaticAberration
+    - UnityEngine.Rendering.PostProcessing.ColorGrading
+    - UnityEngine.Rendering.PostProcessing.DepthOfField
+    - UnityEngine.Rendering.PostProcessing.Grain
+    - UnityEngine.Rendering.PostProcessing.LensDistortion
+    - UnityEngine.Rendering.PostProcessing.MotionBlur
+    - UnityEngine.Rendering.PostProcessing.PostProcessLayer
+    - UnityEngine.Rendering.PostProcessing.PostProcessProfile
+    - UnityEngine.Rendering.PostProcessing.PostProcessResources
+    - UnityEngine.Rendering.PostProcessing.PostProcessVolume
+    - UnityEngine.Rendering.PostProcessing.ScreenSpaceReflections
+    - UnityEngine.Rendering.PostProcessing.Vignette
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro:
@@ -33,6 +49,24 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Slider
     - UnityEngine.UI.Toggle
   serializedClasses:
+    Unity.Postprocessing.Runtime:
+    - UnityEngine.Rendering.PostProcessing.BoolParameter
+    - UnityEngine.Rendering.PostProcessing.EyeAdaptationParameter
+    - UnityEngine.Rendering.PostProcessing.FastApproximateAntialiasing
+    - UnityEngine.Rendering.PostProcessing.FloatParameter
+    - UnityEngine.Rendering.PostProcessing.Fog
+    - UnityEngine.Rendering.PostProcessing.HistogramMonitor
+    - UnityEngine.Rendering.PostProcessing.LightMeterMonitor
+    - UnityEngine.Rendering.PostProcessing.PostProcessDebugLayer
+    - UnityEngine.Rendering.PostProcessing.PostProcessDebugLayer/OverlaySettings
+    - UnityEngine.Rendering.PostProcessing.PostProcessResources/ComputeShaders
+    - UnityEngine.Rendering.PostProcessing.PostProcessResources/SMAALuts
+    - UnityEngine.Rendering.PostProcessing.PostProcessResources/Shaders
+    - UnityEngine.Rendering.PostProcessing.SubpixelMorphologicalAntialiasing
+    - UnityEngine.Rendering.PostProcessing.TemporalAntialiasing
+    - UnityEngine.Rendering.PostProcessing.Vector2Parameter
+    - UnityEngine.Rendering.PostProcessing.VectorscopeMonitor
+    - UnityEngine.Rendering.PostProcessing.WaveformMonitor
     Unity.TextMeshPro:
     - TMPro.FaceInfo_Legacy
     - TMPro.FontAssetCreationSettings
@@ -106,6 +140,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: LevelSelector
     methodName: OpenScene
+  - assembly: Assembly-CSharp
+    fullTypeName: LevelSelector
+    methodName: OpenScene
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.GameObject
     methodName: SetActive
@@ -154,6 +191,9 @@ ScriptsOnlyBuild:
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.GameObject
     methodName: SetActive
+  - assembly: Assembly-CSharp
+    fullTypeName: LevelSelector
+    methodName: OpenScene
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.GameObject
     methodName: SetActive
@@ -195,11 +235,117 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 3972}
+      Script: {instanceID: 3806}
     - Class: 114
-      Script: {instanceID: 6714}
+      Script: {instanceID: 3984}
     - Class: 114
-      Script: {instanceID: 8060}
+      Script: {instanceID: 6730}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 135
+      Script: {instanceID: 0}
+    - Class: 136
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
+      Script: {instanceID: 0}
+    Assets/Scenes/Level 3.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 3806}
+    - Class: 114
+      Script: {instanceID: 3984}
+    - Class: 114
+      Script: {instanceID: 6730}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 135
+      Script: {instanceID: 0}
+    - Class: 136
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
+      Script: {instanceID: 0}
+    Assets/Scenes/Level 4.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 3806}
+    - Class: 114
+      Script: {instanceID: 3984}
+    - Class: 114
+      Script: {instanceID: 6730}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 135
@@ -229,6 +375,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 49
       Script: {instanceID: 0}
+    - Class: 72
+      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 104
@@ -240,31 +388,41 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1660}
     - Class: 114
-      Script: {instanceID: 2260}
+      Script: {instanceID: 1856}
     - Class: 114
-      Script: {instanceID: 2692}
+      Script: {instanceID: 2262}
     - Class: 114
-      Script: {instanceID: 2894}
+      Script: {instanceID: 2470}
     - Class: 114
-      Script: {instanceID: 3188}
+      Script: {instanceID: 2682}
     - Class: 114
-      Script: {instanceID: 4206}
+      Script: {instanceID: 2696}
     - Class: 114
-      Script: {instanceID: 5046}
+      Script: {instanceID: 2898}
     - Class: 114
-      Script: {instanceID: 5094}
+      Script: {instanceID: 3192}
     - Class: 114
-      Script: {instanceID: 5168}
+      Script: {instanceID: 3312}
     - Class: 114
-      Script: {instanceID: 5874}
+      Script: {instanceID: 3720}
     - Class: 114
-      Script: {instanceID: 6186}
+      Script: {instanceID: 4218}
     - Class: 114
-      Script: {instanceID: 32856}
+      Script: {instanceID: 4744}
     - Class: 114
-      Script: {instanceID: 72622}
+      Script: {instanceID: 4890}
     - Class: 114
-      Script: {instanceID: 108766}
+      Script: {instanceID: 5060}
+    - Class: 114
+      Script: {instanceID: 5108}
+    - Class: 114
+      Script: {instanceID: 5182}
+    - Class: 114
+      Script: {instanceID: 5888}
+    - Class: 114
+      Script: {instanceID: 6202}
+    - Class: 114
+      Script: {instanceID: 7234}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -317,23 +475,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1660}
     - Class: 114
-      Script: {instanceID: 2692}
+      Script: {instanceID: 2696}
     - Class: 114
-      Script: {instanceID: 2894}
+      Script: {instanceID: 2898}
     - Class: 114
-      Script: {instanceID: 3972}
+      Script: {instanceID: 3806}
     - Class: 114
-      Script: {instanceID: 5168}
+      Script: {instanceID: 3984}
     - Class: 114
-      Script: {instanceID: 5874}
+      Script: {instanceID: 4606}
     - Class: 114
-      Script: {instanceID: 6186}
+      Script: {instanceID: 5182}
     - Class: 114
-      Script: {instanceID: 6714}
+      Script: {instanceID: 5888}
     - Class: 114
-      Script: {instanceID: 8060}
+      Script: {instanceID: 6202}
     - Class: 114
-      Script: {instanceID: 8068}
+      Script: {instanceID: 6730}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -405,6 +563,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
     className: Selectable
+  - hash:
+      serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: LevelSelector
   - hash:
       serializedVersion: 2
       Hash: ea1569413d805748b7cef2dcb4622c85
@@ -483,6 +647,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnBecameVisibleMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: fc334bd7683b00efd9b8ab8407717ace
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: LoadPrefs
   - hash:
       serializedVersion: 2
       Hash: bcdedb1b3a567eb05111be4716618ce1
@@ -599,6 +769,12 @@ ScriptsOnlyBuild:
     className: Button
   - hash:
       serializedVersion: 2
+      Hash: 5dee5e8eb3f909888bff9a7a33af1a39
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: LerpColor
+  - hash:
+      serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -707,10 +883,28 @@ ScriptsOnlyBuild:
     className: UnityOnCollisionExit2DMessageListener
   - hash:
       serializedVersion: 2
+      Hash: 04a512647269b865232bbb6657d2f69a
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: MenuController
+  - hash:
+      serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SpriteToFade
+  - hash:
+      serializedVersion: 2
       Hash: f6831ac80ec81c5d5b370c0ed0fee997
     assemblyName: Unity.VisualScripting.Flow
     namespaceName: Unity.VisualScripting
     className: ScriptGraphAsset
+  - hash:
+      serializedVersion: 2
+      Hash: d1e170a1e0aa54722165ca9f6095db11
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Deflect
   - hash:
       serializedVersion: 2
       Hash: 0286ed84936a6e3c4dba049ae21a7b1c
@@ -837,6 +1031,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Postprocessing.Runtime
     namespaceName: UnityEngine.Rendering.PostProcessing
     className: ScreenSpaceReflections
+  - hash:
+      serializedVersion: 2
+      Hash: 17a1a89e162787a4308c4079ded5ffe7
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ToturialDialogue
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -1047,6 +1247,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro
     namespaceName: TMPro
     className: TextMeshProUGUI
+  - hash:
+      serializedVersion: 2
+      Hash: 92fc1f7cd00cbc355dbfc599322d7933
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: EnemyAI
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -1341,57 +1547,11 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 751e5bae2a317288c2ab58d66687092b
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: SpriteToFade
-  - hash:
-      serializedVersion: 2
-      Hash: d1e170a1e0aa54722165ca9f6095db11
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: Deflect
-  - hash:
-      serializedVersion: 2
-      Hash: 5dee5e8eb3f909888bff9a7a33af1a39
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: LerpColor
-  - hash:
-      serializedVersion: 2
-      Hash: 17a1a89e162787a4308c4079ded5ffe7
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: ToturialDialogue
-  - hash:
-      serializedVersion: 2
-      Hash: 92fc1f7cd00cbc355dbfc599322d7933
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: EnemyAI
-  - hash:
-      serializedVersion: 2
-      Hash: e682c76120704e8a0a738d4101f45862
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: MenuController
-  - hash:
-      serializedVersion: 2
-      Hash: 9bc4d0805088be611cbba5f621ffb3bc
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: LoadPrefs
-  - hash:
-      serializedVersion: 2
-      Hash: 751e5bae2a317288c2ab58d66687092b
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: LevelSelector
   platform: 19
   scenePathNames:
   - Assets/Scenes/Manin Menu.unity
   - Assets/Scenes/Level 2.unity
+  - Assets/Scenes/Level 3.unity
+  - Assets/Scenes/Level 4.unity
   - Assets/Scenes/SampleScene.unity
   playerPath: D:/University/Polytechnic/Courses/year4/game-dev/Project Nuallity.exe
