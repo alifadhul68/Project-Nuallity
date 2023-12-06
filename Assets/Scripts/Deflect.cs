@@ -11,14 +11,11 @@ public class Deflect : MonoBehaviour
     [SerializeField]
     public float deflectTime = 1f;
     public GameObject gOb;
-    public ParticleSystem part;
-    private ParticleSystem.EmissionModule partEmit;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        partEmit = part.emission;
         
 
     }
@@ -36,18 +33,19 @@ public class Deflect : MonoBehaviour
     {
         isDeflecting = true;
 
-        partEmit.enabled = true;
+        //partEmit.enabled = true;
         gOb.SetActive(true);
-
+        
         float startTime = Time.time;
         while (Time.time - startTime < deflectTime)
         {
-            part.Emit(new ParticleSystem.EmitParams() 
-            { position = UnityEngine.Random.onUnitSphere}, 5);
+            //part.Emit(new ParticleSystem.EmitParams() 
+            //{ position = UnityEngine.Random.onUnitSphere}, 5);
+            gOb.transform.Rotate(new Vector3(0.1f, 0.1f, 0.1f));
             yield return null;
         }
 
-        partEmit.enabled = false;
+        //partEmit.enabled = false;
         gOb.SetActive(false);
         isDeflecting = false;
     }
