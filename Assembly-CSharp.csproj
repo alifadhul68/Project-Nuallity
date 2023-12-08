@@ -61,6 +61,7 @@
     <Compile Include="Assets\Dialogues\ToturialDialogue.cs" />
     <Compile Include="Assets\Scripts\MainMenu\MenuController.cs" />
     <Compile Include="Assets\Scripts\LerpColor.cs" />
+    <Compile Include="Assets\Scripts\DDOL.cs" />
     <Compile Include="Assets\Scripts\MainMenu\LevelSelector.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Ramps\Runtime\RampAsset.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\AdjustTimeScale.cs" />

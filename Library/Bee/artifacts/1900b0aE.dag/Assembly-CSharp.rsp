@@ -361,6 +361,7 @@
 "Assets/Dialogues/DialogueAsset.cs"
 "Assets/Dialogues/ToturialDialogue.cs"
 "Assets/Scripts/CameraController.cs"
+"Assets/Scripts/DDOL.cs"
 "Assets/Scripts/Deflect.cs"
 "Assets/Scripts/EnemyAI.cs"
 "Assets/Scripts/LerpColor.cs"
