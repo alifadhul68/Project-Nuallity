@@ -12,11 +12,14 @@ public class Deflect : MonoBehaviour
     public float deflectTime = 1f;
     public GameObject gOb;
 
+    //audio variable for deflect
+    private AudioSource audioDeflect;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //looks for the audioSource comp in the player
+        audioDeflect = GetComponent<AudioSource>();
 
     }
 
@@ -35,7 +38,11 @@ public class Deflect : MonoBehaviour
 
         //partEmit.enabled = true;
         gOb.SetActive(true);
-        
+
+        //enable the audio and play it
+        audioDeflect.enabled = true;
+        audioDeflect.Play();
+
         float startTime = Time.time;
         while (Time.time - startTime < deflectTime)
         {
@@ -44,6 +51,8 @@ public class Deflect : MonoBehaviour
             gOb.transform.Rotate(new Vector3(0.1f, 0.1f, 0.1f));
             yield return null;
         }
+        //disable the audio
+        audioDeflect.enabled = false;
 
         //partEmit.enabled = false;
         gOb.SetActive(false);
