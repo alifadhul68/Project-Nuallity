@@ -29,11 +29,15 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem part;
     private ParticleSystem.EmissionModule partEmit;
 
+    //audio variable for dash
+    private AudioSource audioDash;
     // Start is called before the first frame update
     void Start()
     {
         partEmit = part.emission;
         timeSinceLastAttack = attackCooldown;
+        //looks for the audioSource comp in the player
+        audioDash = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -99,7 +103,9 @@ public class PlayerMovement : MonoBehaviour
         Vector3 dashDirection = new Vector3(_horizontal, 0, _vertical);
 
         partEmit.enabled = true;
-
+        //enable the audio and play it
+        audioDash.enabled = true;
+        audioDash.Play();
         float startTime = Time.time;
         while (Time.time - startTime < dashTime)
         {
@@ -107,6 +113,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = dashDirection * dashSpeed;
             yield return null;
         }
+        audioDash.enabled = false;
         rb.velocity = Vector3.zero;
         partEmit.enabled = false;
         isDashing = false;
