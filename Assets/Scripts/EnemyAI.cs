@@ -80,8 +80,11 @@ public class EnemyAI : MonoBehaviour
 
         // Check if the enemy is dead
         if (currentHealth <= 0)
-        {            
-            Die();            
+        {
+            movementSpeed = 0f;
+            audioDestroy.enabled = true;
+            audioDestroy.Play();
+            Invoke("Die",2.5f);            
         }
     }
 
@@ -90,12 +93,8 @@ public class EnemyAI : MonoBehaviour
         // TODO: Implement death logic
         // For example, play death animation, spawn loot, or destroy the enemy object
         //enable the audio and play it
-        audioDestroy.enabled = true;
-        audioDestroy.Play();
-        /*while (audioDestroy.isPlaying)
-        {
-
-        }*/
+        
+        
         Destroy(gameObject);
         
     }
