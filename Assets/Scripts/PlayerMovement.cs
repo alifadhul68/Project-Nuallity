@@ -29,17 +29,24 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem part;
     private ParticleSystem.EmissionModule partEmit;
 
+    [SerializeField]
+    private LayerMask groundMask;
+    private Camera cam;
+
     // Start is called before the first frame update
     void Start()
     {
         partEmit = part.emission;
         timeSinceLastAttack = attackCooldown;
+        cam = Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
         handlePlayerInput();
+        handlePlayerRotation();
+        HandleShootInput();
 
         // Check if the player can attack and trigger attack when the player presses a designated key (e.g., Space)
         if (Input.GetKeyDown(KeyCode.Mouse0) && timeSinceLastAttack >= attackCooldown)
@@ -67,6 +74,38 @@ public class PlayerMovement : MonoBehaviour
         transform.Translate(_movement * movementSpeed * Time.deltaTime, Space.World);
     }
 
+    void handlePlayerRotation()
+    {
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, groundMask))
+        {
+            // Trigonometry calculations to cause character to aim at where mouse is pointing relative to projectile height
+            // rather than pointing at the ground or slightly above the cursor
+
+            // opposite side length
+            Vector3 hitPoint = hitInfo.point;
+            Vector3 playerDirection = new Vector3(hitInfo.point.x, -0.5f, hitInfo.point.z);
+            float oppositeLength = Vector3.Distance(playerDirection, hitPoint);
+
+            // radian of angle between hypotenuse and adjacent sides
+            float rad = cam.transform.rotation.eulerAngles.x * Mathf.Deg2Rad;
+
+            // calculating hypotenuse length using SOH formula
+            float hypotenuseLength = oppositeLength / Mathf.Sin(rad);
+
+            // final position
+            Vector3 position = ray.GetPoint(hitInfo.distance - hypotenuseLength);
+
+            // adjust character facing direction
+            var direction = position - transform.position;
+            direction.y = 0;
+            transform.forward = direction;
+
+            //Debug.DrawRay(transform.position, position - transform.position, Color.red);
+        }
+    }
+
     void Attack()
     {
 
@@ -87,6 +126,14 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+    }
+
+    void HandleShootInput()
+    {
+        if (Input.GetButton("Fire1"))
+        {
+            PlayerGun.Instance.Shoot();
+        }
     }
 
 
@@ -136,4 +183,7 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
+
+
+
 }
