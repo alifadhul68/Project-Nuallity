@@ -45,7 +45,6 @@ public class Barrier : MonoBehaviour, IInteractable
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("trigger enter triggered");
         if (activated && other.gameObject.tag == "Projectile") 
         {
             Destroy(other.gameObject);
