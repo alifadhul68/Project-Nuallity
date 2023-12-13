@@ -46,14 +46,14 @@ public class PlayerMovement : MonoBehaviour
         handlePlayerInput();
 
         // Check if the player can attack and trigger attack when the player presses a designated key (e.g., Space)
-        if (Input.GetKeyDown(KeyCode.Mouse0) && timeSinceLastAttack >= attackCooldown)
+        /*if (Input.GetKeyDown(KeyCode.Mouse0) && timeSinceLastAttack >= attackCooldown)
         {
             Attack();
             timeSinceLastAttack = 0f; // Reset the attack cooldown timer
         }
 
         // Update the attack cooldown timer
-        timeSinceLastAttack += Time.deltaTime;
+        timeSinceLastAttack += Time.deltaTime;*/
 
         // Dash mechanism
         if (Input.GetKeyDown(KeyCode.Space) && !isDashing)
@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
         transform.Translate(_movement * movementSpeed * Time.deltaTime, Space.World);
     }
 
-    void Attack()
+    /* void Attack()
     {
 
         // Implementing attack logic
@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-    }
+    }*/
 
 
     IEnumerator Dash()
