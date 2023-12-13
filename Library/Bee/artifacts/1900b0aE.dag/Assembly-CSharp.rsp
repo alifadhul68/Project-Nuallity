@@ -365,6 +365,7 @@
 "Assets/Scripts/Deflect.cs"
 "Assets/Scripts/EnemyAI.cs"
 "Assets/Scripts/IInteractable.cs"
+"Assets/Scripts/InteractionDetector.cs"
 "Assets/Scripts/LerpColor.cs"
 "Assets/Scripts/MainMenu/AdjustBrightnesLevels.cs"
 "Assets/Scripts/MainMenu/LevelSelector.cs"

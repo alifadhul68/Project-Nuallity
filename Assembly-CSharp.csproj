@@ -62,6 +62,7 @@
     <Compile Include="Assets\Scripts\MainMenu\MenuController.cs" />
     <Compile Include="Assets\Scripts\LerpColor.cs" />
     <Compile Include="Assets\Scripts\DDOL.cs" />
+    <Compile Include="Assets\Scripts\InteractionDetector.cs" />
     <Compile Include="Assets\Scripts\MainMenu\LevelSelector.cs" />
     <Compile Include="Assets\Scripts\IInteractable.cs" />
     <Compile Include="Assets\Scripts\Projectile.cs" />
