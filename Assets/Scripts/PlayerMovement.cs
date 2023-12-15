@@ -140,6 +140,10 @@ public class PlayerMovement : MonoBehaviour
         {
             PlayerGun.Instance.Shoot();
         }
+        if (Input.GetButton("Reload"))
+        {
+            PlayerGun.Instance.Reload();
+        }
     }
 
 
