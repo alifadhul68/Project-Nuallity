@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     public GameObject SpeedBarier;
 
-    [SerializeField]
+    /*[SerializeField]
     public float attackCooldown = 1f; // Adjust the cooldown time as needed
     private float timeSinceLastAttack;
 
@@ -25,17 +25,24 @@ public class PlayerMovement : MonoBehaviour
     private LayerMask enemyLayer; // Layer to detect enemies
     [SerializeField]
     private int attackDamage = 10; // Damage dealt by the attack
+    */
+
+    [SerializeField]
+    private LayerMask groundMask;
+    private Camera cam;
 
     public ParticleSystem part;
     private ParticleSystem.EmissionModule partEmit;
 
     //audio variable for dash
     private AudioSource audioDash;
+
     // Start is called before the first frame update
     void Start()
     {
+        cam = Camera.main;
         partEmit = part.emission;
-        timeSinceLastAttack = attackCooldown;
+        //timeSinceLastAttack = attackCooldown;
         //looks for the audioSource comp in the player
         audioDash = GetComponent<AudioSource>();
     }
@@ -44,16 +51,18 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         handlePlayerInput();
+        handlePlayerRotation();
+        HandleShootInput();
 
         // Check if the player can attack and trigger attack when the player presses a designated key (e.g., Space)
-        if (Input.GetKeyDown(KeyCode.Mouse0) && timeSinceLastAttack >= attackCooldown)
+        /*if (Input.GetKeyDown(KeyCode.Mouse0) && timeSinceLastAttack >= attackCooldown)
         {
             Attack();
             timeSinceLastAttack = 0f; // Reset the attack cooldown timer
         }
 
         // Update the attack cooldown timer
-        timeSinceLastAttack += Time.deltaTime;
+        timeSinceLastAttack += Time.deltaTime;*/
 
         // Dash mechanism
         if (Input.GetKeyDown(KeyCode.Space) && !isDashing)
@@ -71,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
         transform.Translate(_movement * movementSpeed * Time.deltaTime, Space.World);
     }
 
-    void Attack()
+    /* void Attack()
     {
 
         // Implementing attack logic
@@ -91,6 +100,46 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+    }*/
+
+    void handlePlayerRotation()
+    {
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, groundMask))
+        {
+            // Trigonometry calculations to cause character to aim at where mouse is pointing relative to projectile height
+            // rather than pointing at the ground or slightly above the cursor
+
+            // opposite side length
+            Vector3 hitPoint = hitInfo.point;
+            Vector3 playerDirection = new Vector3(hitInfo.point.x, -0.5f, hitInfo.point.z);
+            float oppositeLength = Vector3.Distance(playerDirection, hitPoint);
+
+            // radian of angle between hypotenuse and adjacent sides
+            float rad = cam.transform.rotation.eulerAngles.x * Mathf.Deg2Rad;
+
+            // calculating hypotenuse length using SOH formula
+            float hypotenuseLength = oppositeLength / Mathf.Sin(rad);
+
+            // final position
+            Vector3 position = ray.GetPoint(hitInfo.distance - hypotenuseLength);
+
+            // adjust character facing direction
+            var direction = position - transform.position;
+            direction.y = 0;
+            transform.forward = direction;
+
+            //Debug.DrawRay(transform.position, position - transform.position, Color.red);
+        }
+    }
+
+    void HandleShootInput()
+    {
+        if (Input.GetButton("Fire1"))
+        {
+            PlayerGun.Instance.Shoot();
+        }
     }
 
 
@@ -141,6 +190,6 @@ public class PlayerMovement : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        //Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }
