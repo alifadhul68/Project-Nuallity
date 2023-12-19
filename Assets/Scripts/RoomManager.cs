@@ -22,7 +22,7 @@ public class RoomManager : MonoBehaviour
     }
 
     private void SelectTheme()
-    {
+    {/*
         int ind;
         ind = Random.Range(1,4);
         //randomly select the theme of rooms
@@ -43,7 +43,7 @@ public class RoomManager : MonoBehaviour
             default:
                 print("kldem");
                 break;
-        }
+        }*/
         selectedRooms = level2Rooms;
     }
 
