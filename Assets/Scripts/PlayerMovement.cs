@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
     private float movementSpeed;
+    private float originSpeed;
     [SerializeField]
     public float dashSpeed = 10f;
     private bool isDashing = false;
@@ -34,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        originSpeed = movementSpeed;
         partEmit = part.emission;
         timeSinceLastAttack = attackCooldown;
         //looks for the audioSource comp in the player
@@ -142,5 +144,31 @@ public class PlayerMovement : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("slow"))
+        {            
+            if (other != null)
+            {
+                // Reduce the player's speed and dash speed
+                movementSpeed *= 0.5f;
+                dashSpeed *= 0.5f;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("slow"))
+        {
+            if (other != null)
+            {
+                //reset the player's speed and dash speed
+                movementSpeed = originSpeed;
+                dashSpeed *= 2f;
+            }
+        }
     }
 }

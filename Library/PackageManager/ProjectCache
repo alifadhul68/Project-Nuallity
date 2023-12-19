@@ -320,9 +320,11 @@ m_ResolvedPackages:
     - 3.2.1
     - 3.2.2
     - 3.3.0
+    - 3.4.0
     compatible:
     - 3.2.2
     - 3.3.0
+    - 3.4.0
     recommended: 3.2.2
     deprecated: []
   dependencies:
@@ -3244,6 +3246,7 @@ m_ResolvedPackages:
     - 1.3.9
     - 1.4.0
     - 1.4.1
+    - 1.4.2
     - 2.0.1-exp.1
     - 2.0.1-exp.2
     - 2.0.1-pre.12
@@ -3261,6 +3264,7 @@ m_ResolvedPackages:
     - 1.3.9
     - 1.4.0
     - 1.4.1
+    - 1.4.2
     - 2.0.1-exp.1
     - 2.0.1-exp.2
     - 2.0.1-pre.12
