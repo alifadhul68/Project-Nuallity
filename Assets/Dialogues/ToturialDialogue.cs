@@ -56,6 +56,7 @@ public class ToturialDialogue : MonoBehaviour
         }
     }
     
+
     IEnumerator TypeLine()
     {
         foreach(char c in lines[index].ToCharArray())
