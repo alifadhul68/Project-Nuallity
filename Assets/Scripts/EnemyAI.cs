@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
@@ -9,6 +10,8 @@ public class EnemyAI : MonoBehaviour
     public float movementSpeed = 3f;
     public float attackCooldown = 2f; // Adjust the cooldown time as needed
     private float timeSinceLastAttack;
+
+    private Animator animator;
 
     public int maxHealth = 100; // Maximum health of the enemy
     private int currentHealth;
@@ -24,6 +27,7 @@ public class EnemyAI : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         timeSinceLastAttack = attackCooldown;
+        animator = GetComponent<Animator>();
         currentHealth = maxHealth; // Initialize current health to max health
         //looks for the audioSource comp in the player
         audioDestroy = GetComponent<AudioSource>();
@@ -80,23 +84,21 @@ public class EnemyAI : MonoBehaviour
 
         // Check if the enemy is dead
         if (currentHealth <= 0)
-        {            
-            Die();            
+        {
+            movementSpeed = 0f;
+            audioDestroy.enabled = true;
+            audioDestroy.Play();
+            animator.SetBool("isDead", true);
+            Invoke("Death",2.5f);
         }
     }
 
-    void Die()
+    private void Death()
     {
         // TODO: Implement death logic
         // For example, play death animation, spawn loot, or destroy the enemy object
         //enable the audio and play it
-        audioDestroy.enabled = true;
-        audioDestroy.Play();
-        /*while (audioDestroy.isPlaying)
-        {
-
-        }*/
-        Destroy(gameObject);
         
+        Destroy(gameObject);
     }
 }
