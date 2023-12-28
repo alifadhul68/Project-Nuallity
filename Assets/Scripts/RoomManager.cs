@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RoomManager : MonoBehaviour
@@ -12,13 +14,29 @@ public class RoomManager : MonoBehaviour
     public GameObject pathwayPrefab; // Prefab for the pathway
     public Transform player; // Reference to the player transform
 
+    private float roomXLegnth;
+    private Vector3 roomZLegnth;
+
     private GameObject currentRoom; // Reference to the current room
     private GameObject currentPathway; // Reference to the current pathway
 
     private void Start()
     {
         SelectTheme();//select the prefabs theme
+        roomZLegnth = Vector3.zero;
         GenerateRoom(); // Generate the initial room
+        
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            DeletePreviousRoom();
+            GenerateRoom();
+            
+            Debug.Log("generated");
+        }
     }
 
     private void SelectTheme()
@@ -50,14 +68,15 @@ public class RoomManager : MonoBehaviour
     private void GenerateRoom()
     {
         // Randomly choose a prefab from the selected array
-        int randomPrefabIndex = Random.Range(0, selectedRooms.Length);
+        int randomPrefabIndex = UnityEngine.Random.Range(0, selectedRooms.Length);
         GameObject selectedPrefab = selectedRooms[randomPrefabIndex];
-
+        
         // Instantiate the selected prefab as the current room
-        currentRoom = Instantiate(selectedPrefab, transform.position, Quaternion.identity);
-
+        currentRoom = Instantiate(selectedPrefab, roomZLegnth , Quaternion.identity);
+        Renderer[] roomRenderer = currentRoom.GetComponentsInChildren<Renderer>();
+        roomZLegnth.z += roomRenderer[0].bounds.size.z + roomRenderer[1].bounds.size.z;
         // Instantiate the pathway prefab between the player and the current room
-        currentPathway = Instantiate(pathwayPrefab, player.position, Quaternion.identity);
+        //currentPathway = Instantiate(pathwayPrefab, player.position, Quaternion.identity);
     }
 
     private void DeletePreviousRoom()
@@ -69,7 +88,7 @@ public class RoomManager : MonoBehaviour
 
         if (currentPathway != null)
         {
-            Destroy(currentPathway); // Destroy the current pathway GameObject
+            //Destroy(currentPathway); // Destroy the current pathway GameObject
         }
     }
 
