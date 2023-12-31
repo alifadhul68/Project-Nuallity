@@ -16,6 +16,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     public GameObject SpeedBarier;
 
+    private Animator animator;
+    private bool isMoving;
+    //private Vector3 lastPosition;
+    //private Vector3 firstPosition;
     /*[SerializeField]
     public float attackCooldown = 1f; // Adjust the cooldown time as needed
     private float timeSinceLastAttack;
@@ -47,6 +51,8 @@ public class PlayerMovement : MonoBehaviour
         //timeSinceLastAttack = attackCooldown;
         //looks for the audioSource comp in the player
         audioDash = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
+        //firstPosition = this.transform.position;
     }
 
     // Update is called once per frame
@@ -73,13 +79,32 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    /*void FixedUpdate()
+    {
+        lastPosition = this.transform.position;
+        if (lastPosition != firstPosition)
+        {
+            animator.SetBool("run", true);
+        }
+        else
+        {
+            animator.SetBool("run", false);
+        }
+        firstPosition = lastPosition;
+    }*/
+
     void handlePlayerInput()
     {
         float _horizontal = Input.GetAxis("Horizontal");
         float _vertical = Input.GetAxis("Vertical");
-
+        bool isMovingNow = Mathf.Abs(_horizontal) > 0.1f || Mathf.Abs(_vertical) > 0.1f;
         Vector3 _movement = new Vector3(_horizontal, 0, _vertical);
         transform.Translate(_movement * movementSpeed * Time.deltaTime, Space.World);
+        if (isMovingNow != isMoving)
+        {
+            isMoving = isMovingNow;
+            animator.SetBool("run", isMoving);
+        }
     }
 
     /* void Attack()
@@ -162,12 +187,14 @@ public class PlayerMovement : MonoBehaviour
         audioDash.enabled = true;
         audioDash.Play();
         float startTime = Time.time;
+        animator.SetBool("roll",true);
         while (Time.time - startTime < dashTime)
         {
             part.Emit(2);
             rb.velocity = dashDirection * dashSpeed;
             yield return null;
         }
+        animator.SetBool("roll", false);
         audioDash.enabled = false;
         rb.velocity = Vector3.zero;
         partEmit.enabled = false;
