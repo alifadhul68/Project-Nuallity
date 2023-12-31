@@ -25,7 +25,7 @@ public class RoomManager : MonoBehaviour
         SelectTheme();//select the prefabs theme
         roomZLegnth = Vector3.zero;
         GenerateRoom(); // Generate the initial room
-        
+
     }
 
     private void Update()
@@ -74,7 +74,7 @@ public class RoomManager : MonoBehaviour
         // Instantiate the selected prefab as the current room
         currentRoom = Instantiate(selectedPrefab, roomZLegnth , Quaternion.identity);
         Renderer[] roomRenderer = currentRoom.GetComponentsInChildren<Renderer>();
-        roomZLegnth.z += roomRenderer[0].bounds.size.z + roomRenderer[1].bounds.size.z;
+        roomZLegnth.z += roomRenderer[0].bounds.size.z; //+ roomRenderer[1].bounds.size.z;
         // Instantiate the pathway prefab between the player and the current room
         //currentPathway = Instantiate(pathwayPrefab, player.position, Quaternion.identity);
     }
@@ -92,13 +92,5 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            DeletePreviousRoom(); // Delete the previous room and pathway
-
-            GenerateRoom(); // Generate the next room            
-        }
-    }
+    
 }
