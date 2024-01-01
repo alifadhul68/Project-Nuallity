@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class DDOL : MonoBehaviour
 {
-
+    public static bool isAllowed;
     public AudioClip[] audioClips; // Array of audio clips
     private AudioSource audioSource; // Reference to the AudioSource component
 
@@ -16,7 +16,7 @@ public class DDOL : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         audioSource = GetComponent<AudioSource>(); // Get the AudioSource component attached to the same GameObject
-
+        isAllowed = true;
         if (audioClips.Length > 0)
         {
             PlayAudioClip(currentIndex); // Start playing the first audio clip
