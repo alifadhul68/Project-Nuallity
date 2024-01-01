@@ -9,6 +9,7 @@ TagManager:
   - Barrier
   - Projectile
   - Enemy
+  - zone
   layers:
   - Default
   - TransparentFX

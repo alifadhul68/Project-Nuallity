@@ -39,13 +39,18 @@ public class EnemySpawn : MonoBehaviour
 
         if (!areDead)
         {
-            //gets enemy clones if any 
-            if (!GameObject.FindGameObjectWithTag("Enemy"))
+            if(trig.activeInHierarchy == true)
             {
-                areDead = true;
-                //disable the exit barrier
-                exit.SetActive(false);
+                //gets enemy clones if any 
+                if (!GameObject.FindGameObjectWithTag("Enemy"))
+                {
+                    Debug.Log("D");
+                    areDead = true;
+                    //disable the exit barrier
+                    exit.SetActive(false);
+                }
             }
+            
         }
              
     }
