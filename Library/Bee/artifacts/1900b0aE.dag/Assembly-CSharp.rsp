@@ -374,6 +374,7 @@
 "Assets/Scripts/MainMenu/LevelSelector.cs"
 "Assets/Scripts/MainMenu/LoadPrefs.cs"
 "Assets/Scripts/MainMenu/MenuController.cs"
+"Assets/Scripts/PauseMenu/PauseMenu.cs"
 "Assets/Scripts/PlayerGun.cs"
 "Assets/Scripts/PlayerHealth.cs"
 "Assets/Scripts/PlayerMovement.cs"
