@@ -4,32 +4,25 @@ using UnityEngine;
 
 public class PlayerGun : MonoBehaviour
 {
-    public static PlayerGun Instance;
+    [SerializeField]
+    private Transform firingPoint;
+    [SerializeField]
+    private GameObject projectilePrefab;
+    [SerializeField]
+    private float fireRate;
+    [SerializeField]
+    private int maxAmmo;
+    [SerializeField]
+    private float reloadTime;
 
     private float nextTimeToShoot = 0;
+    private int ammoInMag;
 
-    [SerializeField]
-    public Transform firingPoint;
-    [SerializeField]
-    GameObject projectilePrefab;
-    [SerializeField]
-    float fireRate;
-    [SerializeField]
-    int maxAmmo;
-    int ammoInMag;
-    [SerializeField]
-    float reloadTime;
-    
-
-    void Awake()
-    {
-        Instance = GetComponent<PlayerGun>();
-    }
     private void Start()
     {
-        
+        ammoInMag = maxAmmo;
     }
-    // instantiates projectile on player input 
+
     public void Shoot()
     {
         if (ammoInMag <= 0)
@@ -37,10 +30,16 @@ public class PlayerGun : MonoBehaviour
             Reload();
             return;
         }
+
         if (Time.time >= nextTimeToShoot)
         {
             nextTimeToShoot = Time.time + fireRate;
-            Instantiate(projectilePrefab, firingPoint.position, firingPoint.rotation);
+            GameObject projectile = Instantiate(projectilePrefab, firingPoint.position, firingPoint.rotation);
+            Projectile projectileScript = projectile.GetComponent<Projectile>();
+            if (projectileScript != null)
+            {
+                projectileScript.SetShooter(transform.parent.gameObject); // Set this GameObject as the shooter
+            }
             ammoInMag -= 1;
         }
     }
@@ -49,9 +48,9 @@ public class PlayerGun : MonoBehaviour
     {
         if (ammoInMag < maxAmmo)
         {
-            Debug.Log("reload triggered");
             nextTimeToShoot = Time.time + reloadTime;
             ammoInMag = maxAmmo;
         }
     }
+
 }

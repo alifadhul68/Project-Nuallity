@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -22,6 +23,7 @@ public class EnemyAI : MonoBehaviour
 
     //audio variable for death
     private AudioSource audioDestroy;
+    private PlayerGun gun;
 
     void Start()
     {
@@ -31,26 +33,34 @@ public class EnemyAI : MonoBehaviour
         currentHealth = maxHealth; // Initialize current health to max health
         //looks for the audioSource comp in the player
         audioDestroy = GetComponent<AudioSource>();
+        gun = GetComponentInChildren<PlayerGun>();
+        if (gun != null)
+        {
+            attackRange = 10f;
+        }
     }
 
     void Update()
     {
         if (Vector3.Distance(transform.position, player.position) < detectionRange)
         {
+            Vector3 directionToPlayer = (player.position - transform.position).normalized;
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, player.position - transform.position, out hit, detectionRange))
+            if (Physics.Raycast(transform.position, directionToPlayer, out hit, detectionRange))
             {
                 if (hit.collider.CompareTag("Player"))
                 {
-                    // Check if the player is within attack range
                     if (Vector3.Distance(transform.position, player.position) > attackRange)
                     {
                         MoveTowardsPlayer();
                     }
-                    else if (timeSinceLastAttack >= attackCooldown)
+                    else
                     {
-                        AttackPlayer();
-                        timeSinceLastAttack = 0f;
+                        if (timeSinceLastAttack >= attackCooldown)
+                        {
+                            PerformAttack();
+                            timeSinceLastAttack = 0f;
+                        }
                     }
                 }
             }
@@ -59,46 +69,87 @@ public class EnemyAI : MonoBehaviour
         timeSinceLastAttack += Time.deltaTime;
     }
 
+    void PerformAttack()
+    {
+        if (gun != null) // If the enemy has a gun, shoot
+        {
+            Debug.Log("Shooting");
+            gun.Shoot();
+        }
+        else // If no gun, perform melee attack
+        {
+            MeleeAttack();
+        }
+    }
+
+    void MeleeAttack()
+    {
+        // Implement melee attack logic
+        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+        if (playerHealth != null)
+        {
+            Debug.Log("Player Hit!!!");
+            playerHealth.TakeDamage(10); // Adjust damage value as needed
+        }
+    }
+
     void MoveTowardsPlayer()
     {
         transform.LookAt(player);
         transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
     }
 
-    void AttackPlayer()
+    //void AttackPlayer()
+    //{
+    //    // TODO: Implement attack logic
+    //    // For example, reduce player's health
+    //    PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+    //    if (playerHealth != null)
+    //    {
+    //        Debug.Log("Player Hit!!!");
+    //        playerHealth.TakeDamage(10); // Adjust the damage value as needed
+    //    }
+    //}
+
+    //public void TakeDamage(int damage)
+    //{
+    //    // Reduce the enemy's health
+    //    currentHealth -= damage;
+
+    //    // Check if the enemy is dead
+    //    if (currentHealth <= 0)
+    //    {
+    //        movementSpeed = 0f;
+    //        audioDestroy.enabled = true;
+    //        audioDestroy.Play();
+    //        animator.SetBool("isDead", true);
+    //        Invoke("Death",2.5f);
+    //    }
+    //}
+
+    private void OnTriggerEnter(Collider other)
     {
-        // TODO: Implement attack logic
-        // For example, reduce player's health
-        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-        if (playerHealth != null)
+        if (other.gameObject.tag == "Projectile")
         {
-            Debug.Log("Player Hit!!!");
-            playerHealth.TakeDamage(10); // Adjust the damage value as needed
+            Destroy(other.gameObject);
+            currentHealth -= 10;
+            if (currentHealth <= 0)
+            {
+                movementSpeed = 0f;
+                audioDestroy.enabled = true;
+                audioDestroy.Play();
+                animator.SetBool("dead", true);
+                StartCoroutine(PostDeathActions());
+            }
         }
     }
 
-    public void TakeDamage(int damage)
+    IEnumerator PostDeathActions()
     {
-        // Reduce the enemy's health
-        currentHealth -= damage;
+        // Wait for the death animation to complete
+        yield return new WaitForSeconds(1.5f);
 
-        // Check if the enemy is dead
-        if (currentHealth <= 0)
-        {
-            movementSpeed = 0f;
-            audioDestroy.enabled = true;
-            audioDestroy.Play();
-            animator.SetBool("isDead", true);
-            Invoke("Death",2.5f);
-        }
-    }
-
-    private void Death()
-    {
-        // TODO: Implement death logic
-        // For example, play death animation, spawn loot, or destroy the enemy object
-        //enable the audio and play it
-        
+        // Now that the animation is done, remove the game object from the screen
         Destroy(gameObject);
     }
 }
