@@ -6,10 +6,11 @@ public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100;
     private int currentHealth;
-
+    private Animator animator;
     void Start()
     {
         currentHealth = maxHealth;
+        animator = GetComponent<Animator>();
     }
 
     public void TakeDamage(int damage)
@@ -28,5 +29,6 @@ public class PlayerHealth : MonoBehaviour
     {
         // TODO: Implement player death logic, e.g., restart the level
         Debug.Log("Player died");
+        animator.SetBool("isDead", true);
     }
 }

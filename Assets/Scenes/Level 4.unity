@@ -1798,11 +1798,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 425688, guid: a85d1edc35b2ed049890c1278faf25e0, type: 3}
   m_PrefabInstance: {fileID: 2084167862}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &720796423 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8889511875841992195, guid: c77f0550bc5e5524d84bdeb6651ce2fa, type: 3}
-  m_PrefabInstance: {fileID: 1749468352}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &722735449 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4103333903944158, guid: 1a365141225c22e49a7bb976869b22a8, type: 3}
@@ -4030,9 +4025,9 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4918224926865088769, guid: c77f0550bc5e5524d84bdeb6651ce2fa, type: 3}
-      propertyPath: SpeedBarier
-      value: 
-      objectReference: {fileID: 720796423}
+      propertyPath: groundMask.m_Bits
+      value: 129
+      objectReference: {fileID: 0}
     - target: {fileID: 7130020705639928299, guid: c77f0550bc5e5524d84bdeb6651ce2fa, type: 3}
       propertyPath: m_RootOrder
       value: 15

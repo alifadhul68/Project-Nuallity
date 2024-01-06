@@ -103,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
         if (isMovingNow != isMoving)
         {
             isMoving = isMovingNow;
-            animator.SetBool("run", isMoving);
+            animator.SetBool("isRunning", isMoving);
         }
     }
 
@@ -187,14 +187,14 @@ public class PlayerMovement : MonoBehaviour
         audioDash.enabled = true;
         audioDash.Play();
         float startTime = Time.time;
-        animator.SetBool("roll",true);
+        animator.SetBool("isRolling", true);
         while (Time.time - startTime < dashTime)
         {
             part.Emit(2);
             rb.velocity = dashDirection * dashSpeed;
             yield return null;
         }
-        animator.SetBool("roll", false);
+        animator.SetBool("isRolling", false);
         audioDash.enabled = false;
         rb.velocity = Vector3.zero;
         partEmit.enabled = false;
