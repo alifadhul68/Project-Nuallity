@@ -2062,7 +2062,7 @@ MonoBehaviour:
   SpeedBarier: {fileID: 8889511875841992195}
   groundMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 129
   part: {fileID: 7596596728198930401}
 --- !u!114 &6895516060566406141
 MonoBehaviour:
