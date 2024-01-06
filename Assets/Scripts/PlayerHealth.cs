@@ -4,19 +4,29 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 100;
-    private int currentHealth;
+    public static int maxHealth = 50;
+    public static int currentHealth = maxHealth;
     private Animator animator;
+    private HealthBar healthBar;
     void Start()
     {
         currentHealth = maxHealth;
         animator = GetComponent<Animator>();
+        GameObject healthBarObject = GameObject.Find("HealthBar");
+        healthBar = healthBarObject.GetComponent<HealthBar>();
+        if (healthBar == null)
+        {
+            Debug.LogError("HealthBar script not found in the scene.");
+        }
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-
+        if (healthBar != null)
+        {
+            healthBar.SetValue(currentHealth);
+        }
         // TODO: Add logic for player taking damage, e.g., play a hurt animation
 
         if (currentHealth <= 0)
