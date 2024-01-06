@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\InteractionDetector.cs" />
     <Compile Include="Assets\Scripts\MainMenu\LevelSelector.cs" />
     <Compile Include="Assets\Scripts\IInteractable.cs" />
+    <Compile Include="Assets\isDead.cs" />
     <Compile Include="Assets\Scripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\PlayerGun.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Ramps\Runtime\RampAsset.cs" />

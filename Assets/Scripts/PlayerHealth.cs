@@ -37,8 +37,24 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-        // TODO: Implement player death logic, e.g., restart the level
         Debug.Log("Player died");
         animator.SetBool("isDead", true);
+        // Start the coroutine to handle post-death actions
+        StartCoroutine(PostDeathActions());
+    }
+
+    IEnumerator PostDeathActions()
+    {
+        // Wait for 1.5 seconds
+        yield return new WaitForSeconds(2.5f);
+
+        // Remove the player from the screen
+        gameObject.SetActive(false);
+
+        // Display the game over screen
+        //if (gameoverscreen != null)
+        //{
+        //    gameoverscreen.setactive(true);
+        //}
     }
 }
