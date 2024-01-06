@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     private float movementSpeed;
     private float originSpeed;
     [SerializeField]
+    private float rotationSpeed;
+    [SerializeField]
     public float dashSpeed = 10f;
     private bool isDashing = false;
     [SerializeField]
@@ -18,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator animator;
     private bool isMoving;
+    private PlayerGun gun;
     //private Vector3 lastPosition;
     //private Vector3 firstPosition;
     /*[SerializeField]
@@ -45,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gun = GetComponentInChildren<PlayerGun>();
         cam = Camera.main;
         originSpeed = movementSpeed;
         partEmit = part.emission;
@@ -100,10 +104,17 @@ public class PlayerMovement : MonoBehaviour
         bool isMovingNow = Mathf.Abs(_horizontal) > 0.1f || Mathf.Abs(_vertical) > 0.1f;
         Vector3 _movement = new Vector3(_horizontal, 0, _vertical);
         transform.Translate(_movement * movementSpeed * Time.deltaTime, Space.World);
+
+        // Update rotation to face the movement direction if moving
+        if (isMovingNow)
+        {
+            RotateTowardsMovementDirection(_movement);
+        }
+
         if (isMovingNow != isMoving)
         {
             isMoving = isMovingNow;
-            animator.SetBool("run", isMoving);
+            animator.SetBool("isRunning", isMoving);
         }
     }
 
@@ -131,48 +142,74 @@ public class PlayerMovement : MonoBehaviour
 
     void handlePlayerRotation()
     {
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        //Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, groundMask))
-        {
-            // Trigonometry calculations to cause character to aim at where mouse is pointing relative to projectile height
-            // rather than pointing at the ground or slightly above the cursor
+        //if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, groundMask))
+        //{
+        //    // Trigonometry calculations to cause character to aim at where mouse is pointing relative to projectile height
+        //    // rather than pointing at the ground or slightly above the cursor
 
-            // opposite side length
-            Vector3 hitPoint = hitInfo.point;
-            Vector3 playerDirection = new Vector3(hitInfo.point.x, -0.5f, hitInfo.point.z);
-            float oppositeLength = Vector3.Distance(playerDirection, hitPoint);
+        //    // opposite side length
+        //    Vector3 hitPoint = hitInfo.point;
+        //    Vector3 playerDirection = new Vector3(hitInfo.point.x, -0.5f, hitInfo.point.z);
+        //    float oppositeLength = Vector3.Distance(playerDirection, hitPoint);
 
-            // radian of angle between hypotenuse and adjacent sides
-            float rad = cam.transform.rotation.eulerAngles.x * Mathf.Deg2Rad;
+        //    // radian of angle between hypotenuse and adjacent sides
+        //    float rad = cam.transform.rotation.eulerAngles.x * Mathf.Deg2Rad;
 
-            // calculating hypotenuse length using SOH formula
-            float hypotenuseLength = oppositeLength / Mathf.Sin(rad);
+        //    // calculating hypotenuse length using SOH formula
+        //    float hypotenuseLength = oppositeLength / Mathf.Sin(rad);
 
-            // final position
-            Vector3 position = ray.GetPoint(hitInfo.distance - hypotenuseLength);
+        //    // final position
+        //    Vector3 position = ray.GetPoint(hitInfo.distance - hypotenuseLength);
 
-            // adjust character facing direction
-            var direction = position - transform.position;
-            direction.y = 0;
-            transform.forward = direction;
+        //    // adjust character facing direction
+        //    var direction = position - transform.position;
+        //    direction.y = 0;
+        //    transform.forward = direction;
 
-            //Debug.DrawRay(transform.position, position - transform.position, Color.red);
-        }
+        //    //Debug.DrawRay(transform.position, position - transform.position, Color.red);
+        //}
     }
 
     void HandleShootInput()
     {
         if (Input.GetButton("Fire1"))
         {
-            PlayerGun.Instance.Shoot();
+            ShootInMovementDirection();
+            gun.Shoot();
         }
         if (Input.GetButton("Reload"))
         {
-            PlayerGun.Instance.Reload();
+            gun.Reload();
         }
     }
+    void ShootInMovementDirection()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
 
+        if (Physics.Raycast(ray, out hit))
+        {
+            // Find the point where the raycast hits, ignoring the y component for flat 2D rotation
+            Vector3 targetPoint = hit.point;
+            targetPoint.y = transform.position.y; // Keep the player's current y position
+
+            // Calculate the direction from the player to the target point
+            Vector3 direction = (targetPoint - transform.position).normalized;
+
+            // Update the player's rotation to face the target point
+            transform.forward = direction;
+        }
+    }
+    void RotateTowardsMovementDirection(Vector3 movementDirection)
+    {
+        if (movementDirection != Vector3.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+        }
+    }
 
     IEnumerator Dash()
     {
@@ -187,14 +224,14 @@ public class PlayerMovement : MonoBehaviour
         audioDash.enabled = true;
         audioDash.Play();
         float startTime = Time.time;
-        animator.SetBool("roll",true);
+        animator.SetBool("isRolling", true);
         while (Time.time - startTime < dashTime)
         {
             part.Emit(2);
             rb.velocity = dashDirection * dashSpeed;
             yield return null;
         }
-        animator.SetBool("roll", false);
+        animator.SetBool("isRolling", false);
         audioDash.enabled = false;
         rb.velocity = Vector3.zero;
         partEmit.enabled = false;
