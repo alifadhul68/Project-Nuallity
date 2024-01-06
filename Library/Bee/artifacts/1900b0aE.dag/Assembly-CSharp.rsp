@@ -382,6 +382,8 @@
 "Assets/Scripts/RoomManager.cs"
 "Assets/Scripts/SpeedBoost.cs"
 "Assets/Scripts/SpriteToFade.cs"
+"Assets/Scripts/UI/HealthBar.cs"
+"Assets/Scripts/UI/PauseMenu.cs"
 "Assets/UnityTechnologies/ParticlePack/EffectExamples/Misc Effects/Scripts/SpawnEffect.cs"
 "Assets/UnityTechnologies/ParticlePack/Shared/Ramps/Runtime/RampAsset.cs"
 "Assets/UnityTechnologies/ParticlePack/Shared/Scripts/AdjustTimeScale.cs"
