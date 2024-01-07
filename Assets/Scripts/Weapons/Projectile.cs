@@ -6,10 +6,9 @@ public class Projectile : MonoBehaviour
     private float startTime;
     private GameObject shooter;
 
-    [SerializeField]
-    private float travelTime;
-    [SerializeField]
-    private float speed;
+    public float travelTime;
+    public float speed;
+    public float damage;
 
     void Start()
     {

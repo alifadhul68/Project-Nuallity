@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerGun : MonoBehaviour
+public class Gun : MonoBehaviour
 {
     [SerializeField]
     private Transform firingPoint;
