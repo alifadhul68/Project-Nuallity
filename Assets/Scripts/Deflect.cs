@@ -26,7 +26,7 @@ public class Deflect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1) && !isDeflecting)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && !isDeflecting && !PauseMenu.isPaused)
         {
             StartCoroutine(Deflecti());
         }

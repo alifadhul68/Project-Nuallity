@@ -11,8 +11,13 @@ public class SpeedBoost : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerMovement>().ApplySpeedBoost(boostAmount, duration);
-            gameObject.SetActive(false);
+            PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
+
+            if (playerMovement != null)
+            {
+                playerMovement.ApplySpeedBoost(boostAmount, duration);
+                Destroy(gameObject);
+            }
         }
     }
 }
