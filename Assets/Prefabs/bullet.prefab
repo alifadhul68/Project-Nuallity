@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   travelTime: 2
   speed: 15
+  damage: 1
 --- !u!136 &7139967316276727819
 CapsuleCollider:
   m_ObjectHideFlags: 0
