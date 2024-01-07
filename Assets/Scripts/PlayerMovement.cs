@@ -44,10 +44,12 @@ public class PlayerMovement : MonoBehaviour
 
     //audio variable for dash
     private AudioSource audioDash;
+    private Deflect shield;
 
     // Start is called before the first frame update
     void Start()
     {
+        shield = GetComponentInChildren<Deflect>();
         gun = GetComponentInChildren<PlayerGun>();
         cam = Camera.main;
         originSpeed = movementSpeed;
@@ -282,6 +284,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Projectile") && shield.isDeflecting)
+        {
+            Rigidbody projectileRb = other.gameObject.GetComponent<Rigidbody>();
+            if (projectileRb != null)
+            {
+                // Calculate deflection direction, for example, back to where it came from
+                Vector3 deflectionDirection = -other.gameObject.transform.forward;
+                float deflectionForce = 30f; // Adjust the force as needed
+
+                // Apply the deflection force
+                projectileRb.velocity = deflectionDirection * deflectionForce;
+            }
+        }
         if (other.CompareTag("slow"))
         {            
             if (other != null)
