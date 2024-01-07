@@ -62,9 +62,16 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        handlePlayerInput();
-        handlePlayerRotation();
-        HandleShootInput();
+        if (!PauseMenu.isPaused)
+        {
+            handlePlayerInput();
+            handlePlayerRotation();
+            HandleShootInput();
+            if (Input.GetKeyDown(KeyCode.Space) && !isDashing)
+            {
+                StartCoroutine(Dash());
+            }
+        }
 
         // Check if the player can attack and trigger attack when the player presses a designated key (e.g., Space)
         /*if (Input.GetKeyDown(KeyCode.Mouse0) && timeSinceLastAttack >= attackCooldown)
@@ -77,10 +84,7 @@ public class PlayerMovement : MonoBehaviour
         timeSinceLastAttack += Time.deltaTime;*/
 
         // Dash mechanism
-        if (Input.GetKeyDown(KeyCode.Space) && !isDashing)
-        {
-            StartCoroutine(Dash());
-        }
+
     }
 
     /*void FixedUpdate()

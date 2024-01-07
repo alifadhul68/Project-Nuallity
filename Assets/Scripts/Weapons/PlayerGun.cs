@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class PlayerGun : MonoBehaviour
 {
+
     public static PlayerGun Instance;
 
     private float nextTimeToShoot = 0;
@@ -32,6 +33,13 @@ public class PlayerGun : MonoBehaviour
     bool speedSpread = false;
     float? damage;
 
+    public enum Presets
+    {
+        pistol,
+        submachine,
+        sawedoff
+    }
+    public Presets preset;
 
     private int ammoInMag;
     private bool reloading;
@@ -59,7 +67,7 @@ public class PlayerGun : MonoBehaviour
             ));
         
         // default preset
-        setPreset("pistol");
+        setPreset(preset.ToString());
     }
 
     private void Update()
@@ -130,6 +138,10 @@ public class PlayerGun : MonoBehaviour
     // instantiates projectile on player input 
     public void Shoot()
     {
+        if (PauseMenu.isPaused)
+        {
+            return;
+        }
         if (ammoInMag <= 0)
         {
             Reload();
@@ -141,8 +153,12 @@ public class PlayerGun : MonoBehaviour
             for (int i = 0; i < bullets; i++)
             {
                 var bullet = Instantiate(projectilePrefab, firingPoint.position, firingPoint.rotation);
+                Projectile bulletScript = bullet.GetComponent<Projectile>();
                 bullet.transform.Rotate(0, Random.Range(-spread+i, spread+i), 0); // +i makes it so bullet spread is higher per bullet
-                
+                if (bulletScript != null)
+                {
+                    bulletScript.SetShooter(transform.parent.gameObject); // Set this GameObject as the shooter
+                }
                 if (travelTime != null)
                 {
                     bullet.GetComponentInChildren<Projectile>().travelTime = (float)travelTime;

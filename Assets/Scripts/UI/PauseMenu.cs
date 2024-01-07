@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 public class PauseMenu : MonoBehaviour
 {
     public static bool isPaused = false;
+    [SerializeField]
+    private Image reloadIndicator;
 
     public GameObject pauseMenuUI;
 
@@ -29,6 +31,7 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
+        reloadIndicator.gameObject.SetActive(true);
         Time.timeScale = 1f;
         isPaused = false;
     }
@@ -36,6 +39,7 @@ public class PauseMenu : MonoBehaviour
     void Pause()
     {
         pauseMenuUI.SetActive(true);
+        reloadIndicator.gameObject.SetActive(false);
         Time.timeScale = 0f;
         isPaused = true;
     }

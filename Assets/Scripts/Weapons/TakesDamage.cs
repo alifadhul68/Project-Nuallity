@@ -35,10 +35,10 @@ public class TakesDamage : MonoBehaviour
             Destroy(other.gameObject);
             hp -= other.gameObject.GetComponentInChildren<Projectile>().damage;
             slider.value = hp/maxhp;
-            Debug.Log("took this much damage: " + other.gameObject.GetComponentInChildren<Projectile>().damage);
-            if (hp <= 0) {
-                Destroy(gameObject);
-            }
+            //Debug.Log("took this much damage: " + other.gameObject.GetComponentInChildren<Projectile>().damage);
+            //if (hp <= 0) {
+            //    Destroy(gameObject);
+            //}
         }
     }
 }
