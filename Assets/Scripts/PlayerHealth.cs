@@ -8,12 +8,16 @@ public class PlayerHealth : MonoBehaviour
     public static int currentHealth = maxHealth;
     private Animator animator;
     private HealthBar healthBar;
+    
+    private AudioSource audioC;
+    public AudioClip audioHit;
     void Start()
     {
         currentHealth = maxHealth;
         animator = GetComponent<Animator>();
         GameObject healthBarObject = GameObject.Find("HealthBar");
         healthBar = healthBarObject.GetComponent<HealthBar>();
+        audioC = GetComponent<AudioSource>();
         if (healthBar == null)
         {
             Debug.LogError("HealthBar script not found in the scene.");
@@ -22,13 +26,18 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        audioC.clip = audioHit;
+        audioC.pitch = 1f;
+        audioC.enabled = true;
+        audioC.Play();
         currentHealth -= damage;
+        
         if (healthBar != null)
         {
             healthBar.SetValue(currentHealth);
         }
         // TODO: Add logic for player taking damage, e.g., play a hurt animation
-
+        //audioC.enabled = false;
         if (currentHealth <= 0)
         {
             Die();
