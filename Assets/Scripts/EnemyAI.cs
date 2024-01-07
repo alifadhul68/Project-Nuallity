@@ -14,6 +14,7 @@ public class EnemyAI : MonoBehaviour
 
     public float detectionRange = 10f;
     public float attackRange = 2f;
+    public float gunAttackRange = 5f;
     public float movementSpeed = 3f;
     public float attackCooldown = 2f; // Adjust the cooldown time as needed
     private float timeSinceLastAttack;
@@ -29,7 +30,7 @@ public class EnemyAI : MonoBehaviour
 
     //audio variable for death
     private AudioSource audioDestroy;
-    private PlayerGun gun;
+    private Gun gun;
 
     void Start()
     {
@@ -39,10 +40,10 @@ public class EnemyAI : MonoBehaviour
         currentHealth = maxHealth; // Initialize current health to max health
         //looks for the audioSource comp in the player
         audioDestroy = GetComponent<AudioSource>();
-        gun = GetComponentInChildren<PlayerGun>();
+        gun = GetComponentInChildren<Gun>();
         if (gun != null)
         {
-            attackRange = 10f;
+            attackRange = gunAttackRange;
         }
     }
 
@@ -52,6 +53,8 @@ public class EnemyAI : MonoBehaviour
 
         if (Vector3.Distance(transform.position, player.position) < detectionRange)
         {
+            RotateTowardsPlayer(); // Continuously rotate towards the player
+
             Vector3 directionToPlayer = (player.position - transform.position).normalized;
             RaycastHit hit;
             if (Physics.Raycast(transform.position, directionToPlayer, out hit, detectionRange))
@@ -77,8 +80,19 @@ public class EnemyAI : MonoBehaviour
         timeSinceLastAttack += Time.deltaTime;
     }
 
+    void RotateTowardsPlayer()
+    {
+        if (currentHealth <= 0) // make sure not to trigger death animation and sound more than once
+            return;
+        Vector3 directionToPlayer = (player.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(directionToPlayer.x, 0, directionToPlayer.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * movementSpeed);
+    }
+
     void PerformAttack()
     {
+        if (currentHealth <= 0) // make sure not to trigger death animation and sound more than once
+            return;
         if (gun != null) // If the enemy has a gun, shoot
         {
             Debug.Log("Shooting");
@@ -92,6 +106,8 @@ public class EnemyAI : MonoBehaviour
 
     void MeleeAttack()
     {
+        if (currentHealth <= 0) // make sure not to trigger death animation and sound more than once
+            return;
         // Implement melee attack logic
         PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
         if (playerHealth != null)
@@ -103,6 +119,8 @@ public class EnemyAI : MonoBehaviour
 
     void MoveTowardsPlayer()
     {
+        if (currentHealth <= 0) // make sure not to trigger death animation and sound more than once
+            return;
         transform.LookAt(player);
         transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
     }

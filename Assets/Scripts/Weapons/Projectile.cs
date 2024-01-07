@@ -5,7 +5,6 @@ public class Projectile : MonoBehaviour
 {
     private float startTime;
     private GameObject shooter;
-
     public float travelTime;
     public float speed;
     public float damage;
@@ -66,7 +65,12 @@ public class Projectile : MonoBehaviour
         if (other.gameObject != shooter && other.CompareTag("Player"))
         {
             PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
+            Deflect shield = other.GetComponentInChildren<Deflect>();
+            if (shield != null && shield.isDeflecting)
+            {
+                return;
+            }
+            if (playerHealth != null && PlayerHealth.currentHealth > 0)
             {
                 playerHealth.TakeDamage(10);
                 Destroy(gameObject); // Destroy the projectile

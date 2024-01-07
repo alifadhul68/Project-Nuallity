@@ -291,6 +291,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 297871640084391759, guid: c77f0550bc5e5524d84bdeb6651ce2fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 608047601871861209, guid: c77f0550bc5e5524d84bdeb6651ce2fa, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -355,6 +359,22 @@ PrefabInstance:
       propertyPath: reloadIndicator
       value: 
       objectReference: {fileID: 165441448}
+    - target: {fileID: 1269505964932340846, guid: c77f0550bc5e5524d84bdeb6651ce2fa, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269505964932340846, guid: c77f0550bc5e5524d84bdeb6651ce2fa, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269505964932340846, guid: c77f0550bc5e5524d84bdeb6651ce2fa, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1512783029176064382, guid: c77f0550bc5e5524d84bdeb6651ce2fa, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1173,6 +1193,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aab760f6235ee34479a31639ecaa81af, type: 3}
+--- !u!1 &1219362655 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7072444061591711132, guid: 910177ec26b76c14996c2d53627a6def, type: 3}
+  m_PrefabInstance: {fileID: 1678689382}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1219362656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219362655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6abf97b60cf4c84aa5b9807edd7dfd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firingPoint: {fileID: 409748541}
+  projectilePrefab: {fileID: 3819667194753232578, guid: eebbd2f1d629b974ba4081a87e1a7aeb, type: 3}
+  fireRate: 0.05
+  maxAmmo: 110
+  reloadTime: 1
 --- !u!4 &1276913796 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 608047601871861209, guid: c77f0550bc5e5524d84bdeb6651ce2fa, type: 3}
@@ -1457,9 +1499,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7072444061591711186, guid: 910177ec26b76c14996c2d53627a6def, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1678689384}
-    - targetCorrespondingSourceObject: {fileID: 7072444061591711186, guid: 910177ec26b76c14996c2d53627a6def, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 7072444061591711132, guid: 910177ec26b76c14996c2d53627a6def, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1678689390}
+      addedObject: {fileID: 1219362656}
   m_SourcePrefab: {fileID: 100100000, guid: 910177ec26b76c14996c2d53627a6def, type: 3}
 --- !u!1 &1678689383 stripped
 GameObject:
@@ -1605,6 +1647,7 @@ MonoBehaviour:
   cam: {fileID: 1464486720}
   detectionRange: 500
   attackRange: 2
+  gunAttackRange: 5
   movementSpeed: 3
   attackCooldown: 2
   maxHealth: 10
@@ -1636,22 +1679,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7072444061591351794, guid: 910177ec26b76c14996c2d53627a6def, type: 3}
   m_PrefabInstance: {fileID: 1678689382}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1678689390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1678689383}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b146e801744af5346acbb7dd11617719, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 1627962669}
-  cam: {fileID: 1464486720}
-  maxhp: 100
-  hp: 0
 --- !u!1001 &1795022563
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ public class Deflect : MonoBehaviour
 {
 
     [SerializeField]
-    private bool isDeflecting = false;
+    public bool isDeflecting = false;
     [SerializeField]
     public float deflectTime = 1f;
     public GameObject gOb;
@@ -58,4 +58,5 @@ public class Deflect : MonoBehaviour
         gOb.SetActive(false);
         isDeflecting = false;
     }
+
 }
