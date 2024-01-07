@@ -344,6 +344,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 942082164}
     - target: {fileID: 773811394415774686, guid: c77f0550bc5e5524d84bdeb6651ce2fa, type: 3}
+      propertyPath: preset
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 773811394415774686, guid: c77f0550bc5e5524d84bdeb6651ce2fa, type: 3}
       propertyPath: maxAmmoUI
       value: 
       objectReference: {fileID: 807478581}
@@ -1275,6 +1279,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI Elements
       objectReference: {fileID: 0}
+    - target: {fileID: 6388894053382004210, guid: b279697ef8cb12c4791228bd2d8a95e0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 6.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1593,11 +1601,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abb8c5f9871e1a4b830ab3fd5992d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slider: {fileID: 1627962669}
+  cam: {fileID: 1464486720}
   detectionRange: 500
   attackRange: 2
   movementSpeed: 3
   attackCooldown: 2
-  maxHealth: 100
+  maxHealth: 10
 --- !u!136 &1678689387
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1633,14 +1643,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1678689383}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b146e801744af5346acbb7dd11617719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 1627962669}
   cam: {fileID: 1464486720}
-  maxhp: 10
+  maxhp: 100
+  hp: 0
 --- !u!1001 &1795022563
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1905,6 +1916,10 @@ PrefabInstance:
     - target: {fileID: 818214459615737908, guid: ad0c7a076913acd4c8bc0fcb781f5cfe, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 929429814890347176, guid: ad0c7a076913acd4c8bc0fcb781f5cfe, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1767574305277639987, guid: ad0c7a076913acd4c8bc0fcb781f5cfe, type: 3}
       propertyPath: m_PresetInfoIsWorld

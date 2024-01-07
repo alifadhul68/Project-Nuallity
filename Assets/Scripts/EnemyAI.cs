@@ -3,9 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour
 {
+    [SerializeField]
+    private Slider slider;
+    [SerializeField]
+    private Camera cam;
+
     public float detectionRange = 10f;
     public float attackRange = 2f;
     public float movementSpeed = 3f;
@@ -14,8 +20,8 @@ public class EnemyAI : MonoBehaviour
 
     private Animator animator;
 
-    public int maxHealth = 100; // Maximum health of the enemy
-    private int currentHealth;
+    public float maxHealth = 100; // Maximum health of the enemy
+    private float currentHealth;
 
     private Transform player;
 
@@ -42,6 +48,8 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
+        slider.transform.rotation = cam.transform.rotation;
+
         if (Vector3.Distance(transform.position, player.position) < detectionRange)
         {
             Vector3 directionToPlayer = (player.position - transform.position).normalized;
@@ -131,10 +139,17 @@ public class EnemyAI : MonoBehaviour
     {
         if (other.gameObject.tag == "Projectile")
         {
+
+            if (currentHealth <= 0) // make sure not to trigger death animation and sound more than once
+                return;
+
+            // handle taking damage
             Destroy(other.gameObject);
-            currentHealth -= 10;
+            currentHealth -= other.gameObject.GetComponentInChildren<Projectile>().damage;
+            slider.value = currentHealth / maxHealth;
             if (currentHealth <= 0)
             {
+                slider.gameObject.SetActive(false);
                 movementSpeed = 0f;
                 audioDestroy.enabled = true;
                 audioDestroy.Play();
