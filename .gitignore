@@ -79,3 +79,6 @@ crashlytics-build.properties
 Library/ArtifactDB
 *.vsidx
 Library/ArtifactDB
+*.cache
+obj/Debug/
+obj/
