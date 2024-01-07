@@ -82,3 +82,4 @@ Library/ArtifactDB
 *.cache
 obj/Debug/
 obj/
+Library/ArtifactDB
