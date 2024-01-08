@@ -16,17 +16,16 @@ public class OxygenMeter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxTopMsk = barRect.rect.height - mask.padding.y - mask.padding.z;
-        initialTopMsk = mask.padding.z;
+        maxTopMsk = barRect.rect.height - mask.padding.y - mask.padding.w;
+        initialTopMsk = mask.padding.w;
     }
-
 
     public void SetValue(int newValue)
     {
-        var tagetWithWidth = newValue * maxTopMsk / 100;
-        var newTopMask = maxTopMsk + initialTopMsk - tagetWithWidth;
+        var targetHeight = newValue * maxTopMsk / 50;
+        var newTopMask = maxTopMsk - targetHeight + initialTopMsk;
         var padding = mask.padding;
-        padding.z = newTopMask;
+        padding.w = newTopMask;
         mask.padding = padding;
     }
 }
