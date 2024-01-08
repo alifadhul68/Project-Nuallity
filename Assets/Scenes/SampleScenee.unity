@@ -558,6 +558,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 942082164}
     - target: {fileID: 773811394415774686, guid: c77f0550bc5e5524d84bdeb6651ce2fa, type: 3}
+      propertyPath: preset
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 773811394415774686, guid: c77f0550bc5e5524d84bdeb6651ce2fa, type: 3}
       propertyPath: maxAmmoUI
       value: 
       objectReference: {fileID: 807478581}

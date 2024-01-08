@@ -1,14 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.Presets;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerGun : MonoBehaviour
 {
-
     public static PlayerGun Instance;
 
     private float nextTimeToShoot = 0;
@@ -33,14 +31,6 @@ public class PlayerGun : MonoBehaviour
     bool speedSpread = false;
     float damage;
 
-    public enum Presets
-    {
-        pistol,
-        submachine,
-        sawedoff
-    }
-    public Presets preset;
-
     private int ammoInMag;
     private bool reloading;
 
@@ -55,19 +45,21 @@ public class PlayerGun : MonoBehaviour
     {
         Instance = GetComponent<PlayerGun>();
 
-        // order: fire rate, reload time, spread, max ammo, bullets shot per click, [optionals]> travel time, speedSpread, damage
-        weaponPresets.Add("pistol", 
-            new GunPreset(0.2f, 0.9f, 4.5f, 9, 1, null, false, 0.5f
-            ));
-        weaponPresets.Add("submachine", 
-            new GunPreset(0.05f, 1.8f, 10f, 22, 1, null, false, 0.3f
-            ));
-        weaponPresets.Add("sawedoff", 
-            new GunPreset(0.3f, 1.5f, 13f, 2, 6, 0.5f, true, 0.4f
-            ));
-        
+        LoadPresets();
+
+        string Prefpreset = PlayerPrefs.GetString("Loadout", "pistol");
+
         // default preset
-        setPreset(preset.ToString());
+        try
+        {
+            setPreset(Prefpreset);
+        }
+        catch
+        {
+            SavePresets();
+            LoadPresets();
+            setPreset(Prefpreset);
+        }
     }
 
     private void Update()
@@ -204,43 +196,6 @@ public class PlayerGun : MonoBehaviour
         this.damage = originalDamage;
     }
 
-    private class GunPreset
-    {
-        float fireRate; 
-        float reloadTime;
-        float spread;
-        int maxAmmo;
-        int bullets;
-        float? travelTime;
-        bool speedSpread = false;
-        float? damage;
-
-        public float FireRate { get => fireRate; set => fireRate = value; }
-        public float ReloadTime { get => reloadTime; set => reloadTime = value; }
-        public float Spread { get => spread; set => spread = value; }
-        public int MaxAmmo { get => maxAmmo; set => maxAmmo = value; }
-        public int Bullets { get => bullets; set => bullets = value; }
-        public float? TravelTime { get => travelTime; set => travelTime = value; }
-        public bool SpeedSpread { get => speedSpread; set => speedSpread = value; }
-        public float? Damage { get => damage; set => damage = value; }
-
-        public GunPreset(float fireRate, float reloadTime, float spread, int maxAmmo, int bullets)
-        {
-            this.FireRate = fireRate;
-            this.ReloadTime = reloadTime;
-            this.Spread = spread;
-            this.MaxAmmo = maxAmmo;
-            this.Bullets = bullets;
-        }
-
-        public GunPreset(float fireRate, float reloadTime, float spread, int maxAmmo, int bullets, float? travelTime, bool speedSpread = false, float? damage = null) : this(fireRate, reloadTime, spread, maxAmmo, bullets)
-        {
-            this.travelTime = travelTime;
-            this.SpeedSpread = speedSpread;
-            this.damage = damage;
-        }
-    }
-
     private void UpdateAmmo()
     {
         ammoUI.text = ammoInMag.ToString();
@@ -251,4 +206,38 @@ public class PlayerGun : MonoBehaviour
         maxAmmoUI.text = maxAmmo.ToString();
     }
 
+    private void SavePresets()
+    {
+        if (!Directory.Exists(Application.persistentDataPath + "/presets"))
+        {
+            Directory.CreateDirectory(Application.persistentDataPath + "/presets");
+        }
+
+        // order: fire rate, reload time, spread, max ammo, bullets shot per click, [optionals]> travel time, speedSpread, damage
+        GunPreset[] presets = new GunPreset[3] {
+            new GunPreset(0.2f, 0.9f, 4.5f, 9, 1, "pistol", null, false, null),
+            new GunPreset(0.05f, 1.8f, 10f, 22, 1, "submachine", null, false, 0.3f),
+            new GunPreset(0.3f, 1.5f, 13f, 2, 6, "sawedoff", 0.5f, true, 0.4f)
+        };
+
+        foreach (GunPreset preset in presets)
+        {
+            string filePath = Application.persistentDataPath + "/presets/" + preset.name + ".json";
+            string fileText = JsonUtility.ToJson(preset);
+            //Debug.Log(fileText);
+            File.WriteAllText(filePath, fileText);
+        }
+    }
+
+    private void LoadPresets()
+    {
+        string filePath = Application.persistentDataPath + "/presets/";
+        foreach (var file in new DirectoryInfo(filePath).GetFiles())
+        {
+            string fileText = File.ReadAllText(filePath + file.Name);
+            //Debug.Log(fileText);
+            GunPreset preset = JsonUtility.FromJson<GunPreset>(fileText);
+            weaponPresets.Add(preset.name, preset);
+        }
+    }
 }
