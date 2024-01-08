@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DamageBoost : MonoBehaviour
 {
-    [SerializeField] private float boostAmount = 0.1f; // Adjust as needed
+    [SerializeField] private float boostAmount = 20f; // Adjust as needed
     [SerializeField] private float duration = 15f;   // Adjust as needed
     private string powerupTitle = "Damage Boost";
     private string powerupDescription = "Your Gun feels More Powerful Temporarily.";

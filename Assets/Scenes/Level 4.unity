@@ -4252,8 +4252,9 @@ GameObject:
   - component: {fileID: 1346193701}
   - component: {fileID: 1346193702}
   - component: {fileID: 1346193703}
+  - component: {fileID: 1346193704}
   m_Layer: 3
-  m_Name: brightness
+  m_Name: OnSceneStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4305,6 +4306,18 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   priority: 0
+--- !u!114 &1346193704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346193700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49fbcd831a954d749874c588ffd821fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1373822477
 PrefabInstance:
   m_ObjectHideFlags: 0
