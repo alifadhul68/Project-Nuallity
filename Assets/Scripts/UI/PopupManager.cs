@@ -29,7 +29,7 @@ public class PopupManager : MonoBehaviour
         }
     }
 
-    public void ShowPopup(string titleText, string descriptionText)
+    public void ShowPopup(string titleText, string descriptionText, float duration)
     {
         // Activate the popup
         popupUI.SetActive(true);
@@ -39,13 +39,13 @@ public class PopupManager : MonoBehaviour
         description.text = descriptionText;
 
         // Start a coroutine to hide the popup after a delay
-        StartCoroutine(HidePopupAfterDelay());
+        StartCoroutine(HidePopupAfterDelay(duration));
     }
 
-    private IEnumerator HidePopupAfterDelay()
+    private IEnumerator HidePopupAfterDelay(float duration)
     {
         // Wait for the specified duration
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(duration);
 
         // Deactivate the popup after the duration
         popupUI.SetActive(false);

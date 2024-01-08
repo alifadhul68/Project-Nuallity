@@ -1,20 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
-public class SpeedBoost : MonoBehaviour
+public class DamageBoost : MonoBehaviour
 {
-    [SerializeField] private float boostAmount = 3f; // Adjust as needed
+    [SerializeField] private float boostAmount = 0.1f; // Adjust as needed
     [SerializeField] private float duration = 15f;   // Adjust as needed
-    private string powerupTitle = "Speed Boost";
-    private string powerupDescription = "Temporary Boosts Player speed.";
+    private string powerupTitle = "Damage Boost";
+    private string powerupDescription = "Your Gun feels More Powerful Temporarily.";
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
+            PlayerGun playerMovement = PlayerGun.Instance;
 
             if (playerMovement != null)
             {
@@ -22,10 +21,14 @@ public class SpeedBoost : MonoBehaviour
                 PopupManager.Instance.ShowPopup(powerupTitle, powerupDescription, 2.5f);
 
                 // Apply speed boost
-                playerMovement.ApplySpeedBoost(boostAmount, duration);
+                playerMovement.ApplyDamageBoost(boostAmount, duration);
 
                 // Destroy powerup object
                 Destroy(gameObject);
+            }
+            else
+            {
+                Debug.Log("error");
             }
         }
     }

@@ -39,7 +39,7 @@ public class HealingPill : MonoBehaviour
                 // Player is already at max health, handle accordingly
                 Debug.Log("Player is already at max health.");
             }
-            PopupManager.Instance.ShowPopup(powerupTitle, powerupDescription);
+            PopupManager.Instance.ShowPopup(powerupTitle, powerupDescription, 2.5f);
             Destroy(gameObject);
         }
     }

@@ -31,7 +31,7 @@ public class PlayerGun : MonoBehaviour
     int bullets;
     float? travelTime;
     bool speedSpread = false;
-    float? damage;
+    float damage;
 
     public enum Presets
     {
@@ -57,7 +57,7 @@ public class PlayerGun : MonoBehaviour
 
         // order: fire rate, reload time, spread, max ammo, bullets shot per click, [optionals]> travel time, speedSpread, damage
         weaponPresets.Add("pistol", 
-            new GunPreset(0.2f, 0.9f, 4.5f, 9, 1, null, false, null
+            new GunPreset(0.2f, 0.9f, 4.5f, 9, 1, null, false, 0.5f
             ));
         weaponPresets.Add("submachine", 
             new GunPreset(0.05f, 1.8f, 10f, 22, 1, null, false, 0.3f
@@ -125,10 +125,10 @@ public class PlayerGun : MonoBehaviour
         {
             Instance.damage = (float)weaponPresets[preset].Damage;
         }
-        else
-        {
-            Instance.damage = null;
-        }
+        //else
+        //{
+        //    Instance.damage = null;
+        //}
 
         //set ammo values
         UpdateAmmo();
@@ -187,6 +187,21 @@ public class PlayerGun : MonoBehaviour
             nextTimeToShoot = Time.time + reloadTime;
             ammoInMag = maxAmmo;
         }
+    }
+
+    public void ApplyDamageBoost(float boostAmount, float duration)
+    {
+        // Apply the speed boost to the player
+        StartCoroutine(DamageBoostRoutine(boostAmount, duration));
+    }
+    private IEnumerator DamageBoostRoutine(float boostAmount, float duration)
+    {
+        float originalDamage = this.damage;
+        this.damage += boostAmount;
+
+        yield return new WaitForSeconds(duration);
+
+        this.damage = originalDamage;
     }
 
     private class GunPreset
