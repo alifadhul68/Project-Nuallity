@@ -11,11 +11,8 @@ public class RoomManager : MonoBehaviour
     public GameObject[] level3Rooms;
     public GameObject[] level4Rooms;
     public GameObject[] selectedRooms;
-    public GameObject pathwayPrefab; // Prefab for the pathway
-    public Transform player; // Reference to the player transform
 
     private int numOfRooms;
-    private float roomXLegnth;
     private Vector3 roomZLegnth;
 
     private GameObject currentRoom; // Reference to the current room
@@ -24,21 +21,34 @@ public class RoomManager : MonoBehaviour
     private bool intraCheck;
     private void Start()
     {
+        intraCheck = false;
         numOfRooms = UnityEngine.Random.Range(6, 12);
         SelectTheme();//select the prefabs theme
         roomZLegnth = Vector3.zero;
         GenerateRoom(); // Generate the initial room
-        intraCheck = false;
+        
     }
 
     private void Update()
     {
+        if (intraCheck == true)
+        {
+            if (GameObject.FindGameObjectWithTag("Enemy") == null)
+            {
+                GenerateRoom();
+                intraCheck = false;
+
+                Debug.Log("generated");
+            }
+        }
+
         if (intra != null)
         {
-            if (!intraCheck)
+            if (intraCheck == false)
             {
-                if (intra.gameObject.activeInHierarchy == true)
+                if (intra.activeInHierarchy == true)
                 {
+                    Debug.Log("intra active");
                     intraCheck = true;
                     StartCoroutine(DeletePreviousRoom());
                 }
@@ -46,16 +56,7 @@ public class RoomManager : MonoBehaviour
            
         }
 
-        if (intraCheck == true)
-        {
-            if (!GameObject.FindGameObjectWithTag("Enemy"))
-            {
-                GenerateRoom();
-
-
-                Debug.Log("generated");
-            }
-        }
+        
     }
 
     private void SelectTheme()
@@ -90,7 +91,7 @@ public class RoomManager : MonoBehaviour
         {
             //change the room theme
             SelectTheme();
-            Debug.Log("theme changed" + numOfRooms);
+            Debug.Log("theme changed");
             numOfRooms = UnityEngine.Random.Range(6, 12);
 
         }
@@ -98,14 +99,15 @@ public class RoomManager : MonoBehaviour
         // Randomly choose a prefab from the selected array
         int randomPrefabIndex = UnityEngine.Random.Range(0, selectedRooms.Length);
         GameObject selectedPrefab = selectedRooms[randomPrefabIndex];
-        intra = selectedPrefab.transform.Find("zone").transform.Find("interance").gameObject;
+        
+        //intra = selectedPrefab.transform.Find("zone").Find("inter_trig").Find("interance").gameObject;
         // Instantiate the selected prefab as the current room
         currentRoom = Instantiate(selectedPrefab, roomZLegnth, Quaternion.identity);
+        intra = currentRoom.transform.Find("zone").Find("inter_trig").Find("interance").gameObject;
+        //intra = currentRoom.transform.Find("exit").gameObject;
         Renderer[] roomRenderer = currentRoom.GetComponentsInChildren<Renderer>();
-        roomZLegnth.z += roomRenderer[0].bounds.size.z; //+ roomRenderer[1].bounds.size.z;
+        roomZLegnth.z += roomRenderer[0].bounds.size.z + roomRenderer[1].bounds.size.x;
 
-        // Instantiate the pathway prefab between the player and the current room
-        //currentPathway = Instantiate(pathwayPrefab, player.position, Quaternion.identity);
         numOfRooms--;
 
     }
@@ -121,8 +123,6 @@ public class RoomManager : MonoBehaviour
         else
             Debug.Log("nothing");
 
-        //if (currentPathway != null)
-        //Destroy(currentPathway); // Destroy the current pathway GameObject
     }
 
 
