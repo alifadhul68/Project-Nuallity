@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -166,7 +168,13 @@ public class PlayerMovement : MonoBehaviour
             Debug.DrawRay(transform.position, position - transform.position, Color.red);
         }
     }
-
+    private void FixedUpdate()
+    {
+        if (gameObject.transform.position.y <= -30)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
     void HandleShootInput()
     {
         if (Input.GetButton("Fire1"))
