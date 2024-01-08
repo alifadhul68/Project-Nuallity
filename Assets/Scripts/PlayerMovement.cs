@@ -44,10 +44,12 @@ public class PlayerMovement : MonoBehaviour
 
     //audio variable for dash
     private AudioSource audioDash;
+    private Deflect shield;
 
     // Start is called before the first frame update
     void Start()
     {
+        shield = GetComponentInChildren<Deflect>();
         gun = GetComponentInChildren<PlayerGun>();
         cam = Camera.main;
         originSpeed = movementSpeed;
@@ -65,7 +67,6 @@ public class PlayerMovement : MonoBehaviour
         if (!PauseMenu.isPaused)
         {
             handlePlayerInput();
-            handlePlayerRotation();
             HandleShootInput();
             if (Input.GetKeyDown(KeyCode.Space) && !isDashing)
             {
@@ -146,34 +147,34 @@ public class PlayerMovement : MonoBehaviour
 
     void handlePlayerRotation()
     {
-        //Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-        //if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, groundMask))
-        //{
-        //    // Trigonometry calculations to cause character to aim at where mouse is pointing relative to projectile height
-        //    // rather than pointing at the ground or slightly above the cursor
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, groundMask))
+        {
+            // Trigonometry calculations to cause character to aim at where mouse is pointing relative to projectile height
+            // rather than pointing at the ground or slightly above the cursor
 
-        //    // opposite side length
-        //    Vector3 hitPoint = hitInfo.point;
-        //    Vector3 playerDirection = new Vector3(hitInfo.point.x, -0.5f, hitInfo.point.z);
-        //    float oppositeLength = Vector3.Distance(playerDirection, hitPoint);
+            // opposite side length
+            Vector3 hitPoint = hitInfo.point;
+            Vector3 playerDirection = new Vector3(hitInfo.point.x, -0.5f, hitInfo.point.z);
+            float oppositeLength = Vector3.Distance(playerDirection, hitPoint);
 
-        //    // radian of angle between hypotenuse and adjacent sides
-        //    float rad = cam.transform.rotation.eulerAngles.x * Mathf.Deg2Rad;
+            // radian of angle between hypotenuse and adjacent sides
+            float rad = cam.transform.rotation.eulerAngles.x * Mathf.Deg2Rad;
 
-        //    // calculating hypotenuse length using SOH formula
-        //    float hypotenuseLength = oppositeLength / Mathf.Sin(rad);
+            // calculating hypotenuse length using SOH formula
+            float hypotenuseLength = oppositeLength / Mathf.Sin(rad);
 
-        //    // final position
-        //    Vector3 position = ray.GetPoint(hitInfo.distance - hypotenuseLength);
+            // final position
+            Vector3 position = ray.GetPoint(hitInfo.distance - hypotenuseLength);
 
-        //    // adjust character facing direction
-        //    var direction = position - transform.position;
-        //    direction.y = 0;
-        //    transform.forward = direction;
+            // adjust character facing direction
+            var direction = position - transform.position;
+            direction.y = 0;
+            transform.forward = direction;
 
-        //    //Debug.DrawRay(transform.position, position - transform.position, Color.red);
-        //}
+            Debug.DrawRay(transform.position, position - transform.position, Color.red);
+        }
     }
 
     void HandleShootInput()
@@ -190,22 +191,36 @@ public class PlayerMovement : MonoBehaviour
     }
     void ShootInMovementDirection()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, groundMask))
         {
-            // Find the point where the raycast hits, ignoring the y component for flat 2D rotation
-            Vector3 targetPoint = hit.point;
-            targetPoint.y = transform.position.y; // Keep the player's current y position
+            // Trigonometry calculations to cause character to aim at where mouse is pointing relative to projectile height
+            // rather than pointing at the ground or slightly above the cursor
 
-            // Calculate the direction from the player to the target point
-            Vector3 direction = (targetPoint - transform.position).normalized;
+            // opposite side length
+            Vector3 hitPoint = hitInfo.point;
+            Vector3 playerDirection = new Vector3(hitInfo.point.x, -0.5f, hitInfo.point.z);
+            float oppositeLength = Vector3.Distance(playerDirection, hitPoint);
 
-            // Update the player's rotation to face the target point
+            // radian of angle between hypotenuse and adjacent sides
+            float rad = cam.transform.rotation.eulerAngles.x * Mathf.Deg2Rad;
+
+            // calculating hypotenuse length using SOH formula
+            float hypotenuseLength = oppositeLength / Mathf.Sin(rad);
+
+            // final position
+            Vector3 position = ray.GetPoint(hitInfo.distance - hypotenuseLength);
+
+            // adjust character facing direction
+            var direction = position - transform.position;
+            direction.y = 0;
             transform.forward = direction;
+
+            Debug.DrawRay(transform.position, position - transform.position, Color.red);
         }
     }
+
     void RotateTowardsMovementDirection(Vector3 movementDirection)
     {
         if (movementDirection != Vector3.zero)
@@ -269,6 +284,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Projectile") && shield.isDeflecting)
+        {
+            Rigidbody projectileRb = other.gameObject.GetComponent<Rigidbody>();
+            if (projectileRb != null)
+            {
+                // Calculate deflection direction, for example, back to where it came from
+                Vector3 deflectionDirection = -other.gameObject.transform.forward;
+                float deflectionForce = 30f; // Adjust the force as needed
+
+                // Apply the deflection force
+                projectileRb.velocity = deflectionDirection * deflectionForce;
+            }
+        }
         if (other.CompareTag("slow"))
         {            
             if (other != null)
