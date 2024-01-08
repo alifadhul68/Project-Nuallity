@@ -42,10 +42,11 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem part;
     private ParticleSystem.EmissionModule partEmit;
 
-    //audio variable for dash
-    private AudioSource audioDash;
-    private Deflect shield;
 
+    //audio variables for dash and hit
+    private AudioSource audioC;
+    public AudioClip audioDash;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -56,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
         partEmit = part.emission;
         //timeSinceLastAttack = attackCooldown;
         //looks for the audioSource comp in the player
-        audioDash = GetComponent<AudioSource>();
+        audioC = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         //firstPosition = this.transform.position;
     }
@@ -240,8 +241,10 @@ public class PlayerMovement : MonoBehaviour
 
         partEmit.enabled = true;
         //enable the audio and play it
-        audioDash.enabled = true;
-        audioDash.Play();
+        audioC.clip = audioDash;
+        audioC.enabled = true;
+        audioC.pitch = 3f;
+        audioC.Play();
         float startTime = Time.time;
         animator.SetBool("isRolling", true);
         while (Time.time - startTime < dashTime)
@@ -251,7 +254,7 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
         animator.SetBool("isRolling", false);
-        audioDash.enabled = false;
+        audioC.enabled = false;
         rb.velocity = Vector3.zero;
         partEmit.enabled = false;
         isDashing = false;

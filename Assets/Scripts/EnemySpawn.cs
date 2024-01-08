@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
 {
-    public GameObject trig;
+    public GameObject intra;
     public GameObject exit;
     public GameObject elite;
     private GameObject check;
@@ -28,7 +28,7 @@ public class EnemySpawn : MonoBehaviour
         if(spawned)
         {
             //checks if the intrance is active
-            if (trig.activeInHierarchy == true)
+            if (intra.activeInHierarchy == true)
             {
                 //to make the if statement called once
                 spawned = false;
@@ -39,7 +39,7 @@ public class EnemySpawn : MonoBehaviour
 
         if (!areDead)
         {
-            if(trig.activeInHierarchy == true)
+            if(intra.activeInHierarchy == true)
             {
                 //gets enemy clones if any 
                 if (!GameObject.FindGameObjectWithTag("Enemy"))
