@@ -9,7 +9,7 @@ public class EnemyAI : MonoBehaviour
 {
     [SerializeField]
     private Slider slider;
-    [SerializeField]
+    
     private Camera cam;
 
     public float detectionRange = 10f;
@@ -34,6 +34,7 @@ public class EnemyAI : MonoBehaviour
 
     void Start()
     {
+        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         timeSinceLastAttack = attackCooldown;
         animator = GetComponent<Animator>();
