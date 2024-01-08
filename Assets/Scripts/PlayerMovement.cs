@@ -15,14 +15,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     public float dashTime = 0.5f;
 
+    private Deflect shield;
+
     [SerializeField]
     public GameObject SpeedBarier;
 
     private Animator animator;
     private bool isMoving;
     private PlayerGun gun;
-    //private Vector3 lastPosition;
-    //private Vector3 firstPosition;
+
     /*[SerializeField]
     public float attackCooldown = 1f; // Adjust the cooldown time as needed
     private float timeSinceLastAttack;
@@ -59,7 +60,6 @@ public class PlayerMovement : MonoBehaviour
         //looks for the audioSource comp in the player
         audioC = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
-        //firstPosition = this.transform.position;
     }
 
     // Update is called once per frame
@@ -88,20 +88,6 @@ public class PlayerMovement : MonoBehaviour
         // Dash mechanism
 
     }
-
-    /*void FixedUpdate()
-    {
-        lastPosition = this.transform.position;
-        if (lastPosition != firstPosition)
-        {
-            animator.SetBool("run", true);
-        }
-        else
-        {
-            animator.SetBool("run", false);
-        }
-        firstPosition = lastPosition;
-    }*/
 
     void handlePlayerInput()
     {

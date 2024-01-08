@@ -1605,8 +1605,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abb8c5f9871e1a4b830ab3fd5992d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slider: {fileID: 1627962669}
+  cam: {fileID: 1464486720}
   detectionRange: 500
   attackRange: 2
+  gunAttackRange: 5
   movementSpeed: 3
   attackCooldown: 2
   maxHealth: 100
@@ -1650,9 +1653,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b146e801744af5346acbb7dd11617719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 1627962669}
-  cam: {fileID: 1464486720}
-  maxhp: 10
 --- !u!1001 &1795022563
 PrefabInstance:
   m_ObjectHideFlags: 0
