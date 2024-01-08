@@ -67,11 +67,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!PauseMenu.isPaused)
         {
-            handlePlayerInput();
-            HandleShootInput();
-            if (Input.GetKeyDown(KeyCode.Space) && !isDashing)
+            if(PlayerHealth.currentHealth > 0)
             {
-                StartCoroutine(Dash());
+                handlePlayerInput();
+                HandleShootInput();
+                if (Input.GetKeyDown(KeyCode.Space) && !isDashing)
+                {
+                    StartCoroutine(Dash());
+                }
             }
         }
 
@@ -273,27 +276,48 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Projectile") && shield.isDeflecting)
+        if (other.CompareTag("Projectile"))
         {
-            Rigidbody projectileRb = other.gameObject.GetComponent<Rigidbody>();
-            if (projectileRb != null)
-            {
-                // Calculate deflection direction, for example, back to where it came from
-                Vector3 deflectionDirection = -other.gameObject.transform.forward;
-                float deflectionForce = 30f; // Adjust the force as needed
-
-                // Apply the deflection force
-                projectileRb.velocity = deflectionDirection * deflectionForce;
-            }
+            HandleProjectileCollision(other);
         }
-        if (other.CompareTag("slow"))
-        {            
-            if (other != null)
-            {
-                // Reduce the player's speed and dash speed
-                movementSpeed *= 0.5f;
-                dashSpeed *= 0.5f;
-            }
+        else if (other.CompareTag("slow"))
+        {
+            ApplySlowEffect(other);
+        }
+    }
+    private void HandleProjectileCollision(Collider projectileCollider)
+    {
+        Projectile projectile = projectileCollider.GetComponent<Projectile>();
+
+        if (projectile == null || projectile.shooter == this.gameObject)
+        {
+            return; // Exit if there's no Projectile component or if this gameObject is the shooter
+        }
+
+        DeflectProjectile(projectileCollider);
+    }
+
+    private void DeflectProjectile(Collider projectileCollider)
+    {
+        Rigidbody projectileRb = projectileCollider.GetComponent<Rigidbody>();
+        if (projectileRb != null && shield.isDeflecting)
+        {
+            // Calculate deflection direction, for example, back to where it came from
+            Vector3 deflectionDirection = -projectileCollider.transform.forward;
+            float deflectionForce = 30f; // Adjust the force as needed
+
+            // Apply the deflection force
+            projectileRb.velocity = deflectionDirection * deflectionForce;
+        }
+    }
+
+    private void ApplySlowEffect(Collider other)
+    {
+        if (other != null) // This check might be redundant as 'other' should always be non-null in OnTriggerEnter
+        {
+            // Reduce the player's speed and dash speed
+            movementSpeed *= 0.5f;
+            dashSpeed *= 0.5f;
         }
     }
 
