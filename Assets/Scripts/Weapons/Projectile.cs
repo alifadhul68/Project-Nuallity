@@ -4,7 +4,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     private float startTime;
-    private GameObject shooter;
+    public GameObject shooter;
     public float travelTime;
     public float speed;
     public float damage;

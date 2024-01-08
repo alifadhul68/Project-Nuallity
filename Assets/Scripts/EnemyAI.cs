@@ -49,35 +49,38 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
-        slider.transform.rotation = cam.transform.rotation;
-
-        if (Vector3.Distance(transform.position, player.position) < detectionRange)
+        if(PlayerHealth.currentHealth > 0)
         {
-            RotateTowardsPlayer(); // Continuously rotate towards the player
+            slider.transform.rotation = cam.transform.rotation;
 
-            Vector3 directionToPlayer = (player.position - transform.position).normalized;
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, directionToPlayer, out hit, detectionRange))
+            if (Vector3.Distance(transform.position, player.position) < detectionRange)
             {
-                if (hit.collider.CompareTag("Player"))
+                RotateTowardsPlayer(); // Continuously rotate towards the player
+
+                Vector3 directionToPlayer = (player.position - transform.position).normalized;
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, directionToPlayer, out hit, detectionRange))
                 {
-                    if (Vector3.Distance(transform.position, player.position) > attackRange)
+                    if (hit.collider.CompareTag("Player"))
                     {
-                        MoveTowardsPlayer();
-                    }
-                    else
-                    {
-                        if (timeSinceLastAttack >= attackCooldown)
+                        if (Vector3.Distance(transform.position, player.position) > attackRange)
                         {
-                            PerformAttack();
-                            timeSinceLastAttack = 0f;
+                            MoveTowardsPlayer();
+                        }
+                        else
+                        {
+                            if (timeSinceLastAttack >= attackCooldown)
+                            {
+                                PerformAttack();
+                                timeSinceLastAttack = 0f;
+                            }
                         }
                     }
                 }
             }
-        }
 
-        timeSinceLastAttack += Time.deltaTime;
+            timeSinceLastAttack += Time.deltaTime;
+        }
     }
 
     void RotateTowardsPlayer()

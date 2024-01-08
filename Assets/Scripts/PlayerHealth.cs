@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -60,10 +61,16 @@ public class PlayerHealth : MonoBehaviour
         // Remove the player from the screen
         gameObject.SetActive(false);
 
+
+        // Load the main menu scene
+        //SceneManager.LoadScene("Manin Menu");
+
+
         // Display the game over screen
         //if (gameoverscreen != null)
         //{
         //    gameoverscreen.setactive(true);
         //}
+
     }
 }
