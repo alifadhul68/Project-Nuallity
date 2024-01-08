@@ -61,7 +61,7 @@ public class EnemyAI : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, directionToPlayer, out hit, detectionRange))
                 {
-                    if (hit.collider.CompareTag("Player"))
+                    if (hit.collider.CompareTag("PlayerDetector"))
                     {
                         if (Vector3.Distance(transform.position, player.position) > attackRange)
                         {

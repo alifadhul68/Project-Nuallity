@@ -10,6 +10,7 @@ TagManager:
   - Projectile
   - Enemy
   - zone
+  - PlayerDetector
   layers:
   - Default
   - TransparentFX
