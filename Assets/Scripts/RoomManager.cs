@@ -114,7 +114,7 @@ public class RoomManager : MonoBehaviour
 
     private IEnumerator DeletePreviousRoom()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1.5f);
         
         if (prevRoom != null)
         {
