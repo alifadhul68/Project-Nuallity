@@ -8070,7 +8070,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2162091411015918468}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.04086881, y: 0.9729, z: -0.857}
+  m_LocalPosition: {x: -0.04086881, y: 0.9729, z: -0.937}
   m_LocalScale: {x: 1.1363189, y: 3.5859, z: 0.2795}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12584,8 +12584,8 @@ Transform:
   - {fileID: 3730194213582066400}
   - {fileID: 2418262195771071624}
   - {fileID: 424353517394354191}
-  - {fileID: 3177897930335106614}
   - {fileID: 1813692021328201822}
+  - {fileID: 3177897930335106614}
   m_Father: {fileID: 1784387952502593503}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12673,7 +12673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d40e7c1ec09eb4a8ff6176281b8a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trig: {fileID: 2162091411015918468}
+  intra: {fileID: 2162091411015918468}
   exit: {fileID: 1068381455155404058}
   elite: {fileID: 0}
   nomOfEnemy: 10
@@ -13125,8 +13125,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4862113855747001992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.106, y: 0.32, z: -4.212}
-  m_LocalScale: {x: 2.0790915, y: 1, z: 1}
+  m_LocalPosition: {x: -0.083692, y: 0.32, z: -4.089}
+  m_LocalScale: {x: 2.6248531, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 978646338299319947}

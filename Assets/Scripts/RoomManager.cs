@@ -6,39 +6,57 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
-    public GameObject[] level1Rooms;  
-    public GameObject[] level2Rooms; 
-    public GameObject[] level3Rooms; 
+    public GameObject[] level1Rooms;
+    public GameObject[] level2Rooms;
+    public GameObject[] level3Rooms;
     public GameObject[] level4Rooms;
     public GameObject[] selectedRooms;
-    public GameObject pathwayPrefab; // Prefab for the pathway
-    public Transform player; // Reference to the player transform
 
     private int numOfRooms;
-    private float roomXLegnth;
     private Vector3 roomZLegnth;
 
     private GameObject currentRoom; // Reference to the current room
-    private GameObject currentPathway; // Reference to the current pathway
-
+    private GameObject prevRoom; // Reference to the previuos room   
+    private GameObject intra;
+    private bool intraCheck;
     private void Start()
     {
-        numOfRooms = UnityEngine.Random.Range(6,12);
+        intraCheck = false;
+        numOfRooms = UnityEngine.Random.Range(6, 12);
         SelectTheme();//select the prefabs theme
         roomZLegnth = Vector3.zero;
         GenerateRoom(); // Generate the initial room
-
+        
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (intraCheck == true)
         {
-            GenerateRoom();
-            StartCoroutine(DeletePreviousRoom());    
-            
-            Debug.Log("generated");
+            if (GameObject.FindGameObjectWithTag("Enemy") == null)
+            {
+                GenerateRoom();
+                intraCheck = false;
+
+                Debug.Log("generated");
+            }
         }
+
+        if (intra != null)
+        {
+            if (intraCheck == false)
+            {
+                if (intra.activeInHierarchy == true)
+                {
+                    Debug.Log("intra active");
+                    intraCheck = true;
+                    StartCoroutine(DeletePreviousRoom());
+                }
+            }
+           
+        }
+
+        
     }
 
     private void SelectTheme()
@@ -69,48 +87,44 @@ public class RoomManager : MonoBehaviour
 
     private void GenerateRoom()
     {
-        if(numOfRooms > 0)
-        {
-            // Randomly choose a prefab from the selected array
-            int randomPrefabIndex = UnityEngine.Random.Range(0, selectedRooms.Length);
-            GameObject selectedPrefab = selectedRooms[randomPrefabIndex];
-
-            // Instantiate the selected prefab as the current room
-            currentRoom = Instantiate(selectedPrefab, roomZLegnth, Quaternion.identity);
-            Renderer[] roomRenderer = currentRoom.GetComponentsInChildren<Renderer>();
-            roomZLegnth.z += roomRenderer[0].bounds.size.z; //+ roomRenderer[1].bounds.size.z;
-
-            // Instantiate the pathway prefab between the player and the current room
-            //currentPathway = Instantiate(pathwayPrefab, player.position, Quaternion.identity);
-            numOfRooms--;
-        }
-        else
+        if (numOfRooms <= 0)
         {
             //change the room theme
             SelectTheme();
-            Debug.Log("theme changed"+numOfRooms);
+            Debug.Log("theme changed");
             numOfRooms = UnityEngine.Random.Range(6, 12);
-            GenerateRoom();
+
         }
+        prevRoom = currentRoom;
+        // Randomly choose a prefab from the selected array
+        int randomPrefabIndex = UnityEngine.Random.Range(0, selectedRooms.Length);
+        GameObject selectedPrefab = selectedRooms[randomPrefabIndex];
+        
+        //intra = selectedPrefab.transform.Find("zone").Find("inter_trig").Find("interance").gameObject;
+        // Instantiate the selected prefab as the current room
+        currentRoom = Instantiate(selectedPrefab, roomZLegnth, Quaternion.identity);
+        intra = currentRoom.transform.Find("zone").Find("inter_trig").Find("interance").gameObject;
+        //intra = currentRoom.transform.Find("exit").gameObject;
+        Renderer[] roomRenderer = currentRoom.GetComponentsInChildren<Renderer>();
+        roomZLegnth.z += roomRenderer[0].bounds.size.z + roomRenderer[1].bounds.size.x;
+
+        numOfRooms--;
 
     }
 
     private IEnumerator DeletePreviousRoom()
-    {        
+    {
         yield return new WaitForSeconds(5f);
-        GameObject currentR = GameObject.FindWithTag("zone");
-        if (currentR != null)
+        
+        if (prevRoom != null)
         {
-            Destroy(currentR); // Destroy the current room GameObject
+            Destroy(prevRoom); // Destroy the current room GameObject
         }
         else
             Debug.Log("nothing");
 
-        if (currentPathway != null)
-        {
-            //Destroy(currentPathway); // Destroy the current pathway GameObject
-        }
     }
 
-    
+
+
 }
