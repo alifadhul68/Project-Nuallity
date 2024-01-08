@@ -15,9 +15,4 @@ public class LevelSelector : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
-
-    public void ChooseLoadout()
-    {
-        SceneManager.LoadScene("Loadout Selection");
-    }
 }
