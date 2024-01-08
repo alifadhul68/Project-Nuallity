@@ -52,6 +52,7 @@ public class Barrier : MonoBehaviour, IInteractable
             if (HP <= 0)
             {
                 Destroy(gameObject);
+                Scoring.Instance.AddPointToBarriersDestroyed();
             }
         }
     }

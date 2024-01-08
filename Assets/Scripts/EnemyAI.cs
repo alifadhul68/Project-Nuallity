@@ -125,6 +125,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (currentHealth <= 0) // make sure not to trigger death animation and sound more than once
             return;
+
         transform.LookAt(player);
         transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
     }
@@ -177,6 +178,7 @@ public class EnemyAI : MonoBehaviour
                 audioDestroy.Play();
                 animator.SetBool("dead", true);
                 StartCoroutine(PostDeathActions());
+                Scoring.Instance.AddPointToEnemiesKilled();
             }
         }
     }
@@ -189,4 +191,6 @@ public class EnemyAI : MonoBehaviour
         // Now that the animation is done, remove the game object from the screen
         Destroy(gameObject);
     }
+
+    
 }
