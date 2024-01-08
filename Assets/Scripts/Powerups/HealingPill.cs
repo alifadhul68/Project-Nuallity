@@ -5,6 +5,8 @@ using UnityEngine;
 public class HealingPill : MonoBehaviour
 {
     [SerializeField] private int healAmount = 20; // Adjust as needed
+    private string powerupTitle = "Heal Up";
+    private string powerupDescription = "Heal 20 HP";
     private HealthBar healthBar;
     void Start()
     {
@@ -37,6 +39,7 @@ public class HealingPill : MonoBehaviour
                 // Player is already at max health, handle accordingly
                 Debug.Log("Player is already at max health.");
             }
+            PopupManager.Instance.ShowPopup(powerupTitle, powerupDescription);
             Destroy(gameObject);
         }
     }

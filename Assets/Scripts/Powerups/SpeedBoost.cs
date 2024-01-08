@@ -7,10 +7,8 @@ public class SpeedBoost : MonoBehaviour
 {
     [SerializeField] private float boostAmount = 3f; // Adjust as needed
     [SerializeField] private float duration = 15f;   // Adjust as needed
-
-    [SerializeField] private GameObject popupUI;
-    [SerializeField] private TMP_Text title;
-    [SerializeField] private TMP_Text description;
+    private string powerupTitle = "Speed Boost";
+    private string powerupDescription = "Temporary Boosts Player speed.";
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,7 +19,7 @@ public class SpeedBoost : MonoBehaviour
             if (playerMovement != null)
             {
                 // Show popup with information
-                ShowPopup();
+                PopupManager.Instance.ShowPopup(powerupTitle, powerupDescription);
 
                 // Apply speed boost
                 playerMovement.ApplySpeedBoost(boostAmount, duration);
@@ -30,27 +28,5 @@ public class SpeedBoost : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-    }
-
-    private void ShowPopup()
-    {
-        // Activate the popup
-        popupUI.SetActive(true);
-
-        // Set title and description
-        title.text = "Speed Boost";
-        description.text = "Increases speed for a duration.";
-
-        // Start a coroutine to hide the popup after a delay
-        StartCoroutine(HidePopupAfterDelay());
-    }
-
-    private IEnumerator HidePopupAfterDelay()
-    {
-        Debug.Log("Waiting to hide popup...");
-        yield return new WaitForSeconds(5f);  // Extend the duration for testing
-
-        popupUI.SetActive(false);
-        Debug.Log("Popup hidden.");
     }
 }
