@@ -72,7 +72,7 @@ public class Projectile : MonoBehaviour
             }
             if (playerHealth != null && PlayerHealth.currentHealth > 0)
             {
-                playerHealth.TakeDamage(10);
+                playerHealth.TakeDamage(5);
                 Destroy(gameObject); // Destroy the projectile
             }
         }
