@@ -54,7 +54,7 @@ public class BurgerItem : MonoBehaviour, IInteractable
                     Debug.LogError("Player object not found with the 'Player' tag.");
                 }
                 PopupManager.Instance.ShowPopup(title, description, 2.5f);
-                Destroy(transform.parent.gameObject);
+                transform.parent.gameObject.SetActive(false);
                 Coin.coins -= price;
                 Coin.UpdateCoinCountText();
             }

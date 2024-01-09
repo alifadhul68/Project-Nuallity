@@ -47,7 +47,7 @@ public class BananaItem : MonoBehaviour, IInteractable
                 playerGun.spread -= decreaseSpreadBy;
                 playerGun.bullets *= multiplyBulletsBy;
                 PopupManager.Instance.ShowPopup(title, description, 2.5f);
-                Destroy(transform.parent.gameObject);
+                transform.parent.gameObject.SetActive(false);
                 Coin.coins -= price;
                 Coin.UpdateCoinCountText();
             }
