@@ -25,14 +25,14 @@ public class PlayerGun : MonoBehaviour
     [SerializeField]
     GameObject projectilePrefab;
 
-    float fireRate;
-    float reloadTime;
-    float spread;
-    int maxAmmo;
-    int bullets;
-    float travelTime;
-    bool speedSpread = false;
-    float damage;
+    public float fireRate;
+    public float reloadTime;
+    public float spread;
+    public int maxAmmo;
+    public int bullets;
+    public float travelTime;
+    public bool speedSpread = false;
+    public float damage;
 
     private int ammoInMag;
     private bool reloading;
