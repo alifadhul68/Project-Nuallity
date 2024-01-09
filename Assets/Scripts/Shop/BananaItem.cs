@@ -52,7 +52,6 @@ public class BananaItem : MonoBehaviour, IInteractable
                 Coin.UpdateCoinCountText();
             }
             else {
-                Debug.Log("ff");
                 PopupManager.Instance.ShowPopup("Not Enough Coins", "Collect More Coins", 2.5f);
             }
         }

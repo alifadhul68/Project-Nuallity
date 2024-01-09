@@ -24,9 +24,18 @@ public class TomatoItem : MonoBehaviour, IInteractable
     {
         if (CanInteract())
         {
-            ApplyRandomEffect();
-            PopupManager.Instance.ShowPopup(title, description, 2.5f);
-            Destroy(transform.parent.gameObject);
+            if (Coin.coins >= price)
+            {
+                ApplyRandomEffect();
+                PopupManager.Instance.ShowPopup(title, description, 2.5f);
+                transform.parent.gameObject.SetActive(false);
+                Coin.coins -= price;
+                Coin.UpdateCoinCountText();
+            }
+            else
+            {
+                PopupManager.Instance.ShowPopup("Not Enough Coins", "Collect More Coins", 2.5f);
+            }
         }
     }
 

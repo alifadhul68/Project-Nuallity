@@ -27,12 +27,19 @@ public class YogurtItem : MonoBehaviour, IInteractable
     {
         if (CanInteract())
         {
-            // Calculate the amount to heal, considering max health
-            // Apply healing to the player
-            PlayerHealth.maxHealth += increaseHPBy;
-            healthBar.SetValue(PlayerHealth.currentHealth);
-            PopupManager.Instance.ShowPopup(title, description, 2.5f);
-            Destroy(transform.parent.gameObject);
+            if (Coin.coins >= price)
+            {
+                PlayerHealth.maxHealth += increaseHPBy;
+                healthBar.SetValue(PlayerHealth.currentHealth);
+                PopupManager.Instance.ShowPopup(title, description, 2.5f);
+                Destroy(transform.parent.gameObject);
+                Coin.coins -= price;
+                Coin.UpdateCoinCountText();
+            }
+            else
+            {
+                PopupManager.Instance.ShowPopup("Not Enough Coins", "Collect More Coins", 2.5f);
+            }
         }
     }
 

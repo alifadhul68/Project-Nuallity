@@ -27,17 +27,26 @@ public class HealingItem : MonoBehaviour, IInteractable
     {
         if (CanInteract())
         {
-            // Calculate the amount to heal, considering max health
-            int amountToHeal = Mathf.Min(healAmount, PlayerHealth.maxHealth - PlayerHealth.currentHealth);
+            if (Coin.coins >= price)
+            {
+                // Calculate the amount to heal, considering max health
+                int amountToHeal = Mathf.Min(healAmount, PlayerHealth.maxHealth - PlayerHealth.currentHealth);
 
-            // Apply healing to the player
-            PlayerHealth.currentHealth += amountToHeal;
-            healthBar.SetValue(PlayerHealth.currentHealth);
-            // Log the healing event (optional)
-            Debug.Log("Player healed for " + amountToHeal + " health.");
+                // Apply healing to the player
+                PlayerHealth.currentHealth += amountToHeal;
+                healthBar.SetValue(PlayerHealth.currentHealth);
+                // Log the healing event (optional)
+                Debug.Log("Player healed for " + amountToHeal + " health.");
 
-            PopupManager.Instance.ShowPopup(title, description, 2.5f);
-            Destroy(transform.parent.gameObject);
+                PopupManager.Instance.ShowPopup(title, description, 2.5f);
+                Destroy(transform.parent.gameObject);
+                Coin.coins -= price;
+                Coin.UpdateCoinCountText();
+            }
+            else
+            {
+                PopupManager.Instance.ShowPopup("Not Enough Coins", "Collect More Coins", 2.5f);
+            }
         }
     }
 
