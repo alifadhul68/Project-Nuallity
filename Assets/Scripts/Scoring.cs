@@ -17,11 +17,10 @@ public sealed class Scoring
     public static Scoring Instance
     {
         get 
-        { 
+        {
             if (instance == null)
             {
                 instance = new Scoring();
-                try { LoadData(); } catch { }
             }
             return instance;
         }
@@ -29,12 +28,14 @@ public sealed class Scoring
 
     public void AddPointToEnemiesKilled()
     {
+        LoadData();
         this.enemiesKilled++;
         SaveData();
     }
 
     public void AddPointToBarriersDestroyed()
     {
+        LoadData();
         this.barriersDestroyed++;
         SaveData();
     }
@@ -46,7 +47,7 @@ public sealed class Scoring
         File.WriteAllText(filePath, fileText);
     }
 
-    private static void LoadData()
+    public void LoadData()
     {
         string filePath = Application.persistentDataPath + "/scoring.json";
         string fileText = File.ReadAllText(filePath);

@@ -1682,7 +1682,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 2080508593}
-  cam: {fileID: 1464486720}
   detectionRange: 500
   attackRange: 2
   gunAttackRange: 5
@@ -2096,7 +2095,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 787744318}
-  cam: {fileID: 1464486720}
   detectionRange: 500
   attackRange: 2
   gunAttackRange: 5
@@ -2130,11 +2128,6 @@ CapsuleCollider:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7673487251499544664, guid: c98043d57e0190845b790d7b92990bee, type: 3}
   m_PrefabInstance: {fileID: 1363467132}
-  m_PrefabAsset: {fileID: 0}
---- !u!20 &1464486720 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 887667401173195983, guid: 2c4e1b19784d54644b3c3fc64803a788, type: 3}
-  m_PrefabInstance: {fileID: 8996154310199310598}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1497880190 stripped
 GameObject:
