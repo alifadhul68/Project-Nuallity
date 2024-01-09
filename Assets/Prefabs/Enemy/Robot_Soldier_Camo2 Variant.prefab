@@ -176,12 +176,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 8556163080451489108}
   detectionRange: 1000
-  attackRange: 50
-  gunAttackRange: 50
+  attackRange: 2
+  gunAttackRange: 8
   movementSpeed: 3
   attackCooldown: 2
   maxHealth: 8
   powerupPrefabs: []
+  coin: {fileID: 0}
 --- !u!82 &8729277066751031849
 AudioSource:
   m_ObjectHideFlags: 0
@@ -317,7 +318,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3420021878070327634}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6abf97b60cf4c84aa5b9807edd7dfd1, type: 3}
   m_Name: 

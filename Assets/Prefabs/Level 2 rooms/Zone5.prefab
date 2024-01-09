@@ -2505,7 +2505,7 @@ MonoBehaviour:
   intra: {fileID: 2644383569779658998}
   exit: {fileID: 0}
   elite: {fileID: 335584062069384989, guid: 68616a1e5eccc1e46a97e8bc27c6965f, type: 3}
-  nomOfEnemy: 10
+  nomOfEnemy: 1
   enemies: []
 --- !u!1 &1437770635481622752
 GameObject:
