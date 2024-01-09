@@ -220,7 +220,7 @@ public class EnemyAI : MonoBehaviour
             else if (randomValue < 0.5f)
             {
                 // Instantiate the coin prefab at the enemy's position
-                Instantiate(coin, transform.position, Quaternion.identity);
+                Instantiate(coin, transform.position + new Vector3(0f,1f,0f), Quaternion.Euler(90f,0f,0f));
             }
         }
         else
