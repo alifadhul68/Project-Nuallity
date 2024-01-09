@@ -44,7 +44,7 @@ public class EnemySpawn : MonoBehaviour
                 //gets enemy clones if any 
                 if (!GameObject.FindGameObjectWithTag("Enemy"))
                 {
-                    Debug.Log("D");
+                    //Debug.Log("D");
                     areDead = true;
                     //disable the exit barrier
                     if(exit != null)

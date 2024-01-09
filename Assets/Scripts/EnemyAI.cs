@@ -108,7 +108,7 @@ public class EnemyAI : MonoBehaviour
             return;
         if (gun != null) // If the enemy has a gun, shoot
         {
-            Debug.Log("Shooting");
+            //Debug.Log("Shooting");
             gun.Shoot();
         }
         else // If no gun, perform melee attack
@@ -131,7 +131,7 @@ public class EnemyAI : MonoBehaviour
         PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
-            Debug.Log("Player Hit!!!");
+            //Debug.Log("Player Hit!!!");
             playerHealth.TakeDamage(10); // Adjust damage value as needed
         }
     }
@@ -145,33 +145,7 @@ public class EnemyAI : MonoBehaviour
         transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
     }
 
-    //void AttackPlayer()
-    //{
-    //    // TODO: Implement attack logic
-    //    // For example, reduce player's health
-    //    PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-    //    if (playerHealth != null)
-    //    {
-    //        Debug.Log("Player Hit!!!");
-    //        playerHealth.TakeDamage(10); // Adjust the damage value as needed
-    //    }
-    //}
-
-    //public void TakeDamage(int damage)
-    //{
-    //    // Reduce the enemy's health
-    //    currentHealth -= damage;
-
-    //    // Check if the enemy is dead
-    //    if (currentHealth <= 0)
-    //    {
-    //        movementSpeed = 0f;
-    //        audioDestroy.enabled = true;
-    //        audioDestroy.Play();
-    //        animator.SetBool("isDead", true);
-    //        Invoke("Death",2.5f);
-    //    }
-    //}
+ 
 
     private void OnTriggerEnter(Collider other)
     {
