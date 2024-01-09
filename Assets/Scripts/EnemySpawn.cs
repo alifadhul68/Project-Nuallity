@@ -47,6 +47,7 @@ public class EnemySpawn : MonoBehaviour
                     Debug.Log("D");
                     areDead = true;
                     //disable the exit barrier
+                    if(exit != null)
                     exit.SetActive(false);
                 }
             }
@@ -57,7 +58,7 @@ public class EnemySpawn : MonoBehaviour
 
     public void EnemySpawning()
     {
-        //rest os the zones
+        //rest of the zones
         if(gameObject.transform.name != "eliteZone"){ 
             int enemyRand;
             Vector3 positionRand;
