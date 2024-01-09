@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -23,8 +24,11 @@ public class RoomManager : MonoBehaviour
     private int enemyIncrease;
     [SerializeField]
     private GameObject shop;
+    private int levelCount = 0;
+    private TMP_Text levelCountText;
     private void Start()
     {
+        levelCountText = GameObject.Find("Level HUD").GetComponentInChildren<TMP_Text>();
         enemyIncrease = 1;
         intraCheck = false;
         numOfRooms = UnityEngine.Random.Range(1, 1);
@@ -126,6 +130,8 @@ public class RoomManager : MonoBehaviour
 
         numOfRooms--;
         enemyIncrease++;
+        levelCount++;
+        levelCountText.text = "Lv" + levelCount;
     }
 
     private void GetFirstVector(GameObject sP)
