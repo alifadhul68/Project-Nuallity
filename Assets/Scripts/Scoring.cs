@@ -28,14 +28,14 @@ public sealed class Scoring
 
     public void AddPointToEnemiesKilled()
     {
-        LoadData();
+        try { LoadData(); } catch { }
         this.enemiesKilled++;
         SaveData();
     }
 
     public void AddPointToBarriersDestroyed()
     {
-        LoadData();
+        try { LoadData(); } catch { }
         this.barriersDestroyed++;
         SaveData();
     }
