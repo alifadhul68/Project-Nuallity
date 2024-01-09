@@ -13,15 +13,15 @@ public class DamageBoost : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerGun playerMovement = PlayerGun.Instance;
+            PlayerGun playerGun= PlayerGun.Instance;
 
-            if (playerMovement != null)
+            if (playerGun != null)
             {
                 // Show popup with information
                 PopupManager.Instance.ShowPopup(powerupTitle, powerupDescription, 2.5f);
 
                 // Apply speed boost
-                playerMovement.ApplyDamageBoost(boostAmount, duration);
+                playerGun.ApplyDamageBoost(boostAmount, duration);
 
                 // Destroy powerup object
                 Destroy(gameObject);
