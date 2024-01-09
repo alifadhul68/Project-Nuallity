@@ -100,6 +100,7 @@ public class RoomManager : MonoBehaviour
             //change the room theme
             SelectTheme();
             float zShop = shop.transform.Find("Plane").GetComponent<Renderer>().bounds.size.z;
+            ActivateAllComponentsAndObjects(shop);
             shop.transform.localPosition = Vector3.zero;
             shop.transform.localPosition += new Vector3(0f,0f, roomZLegnth.z+(zShop/2));
             roomZLegnth.z += zShop;
@@ -132,6 +133,32 @@ public class RoomManager : MonoBehaviour
         enemyIncrease++;
         levelCount++;
         levelCountText.text = "Lv" + levelCount;
+    }
+
+    // Function to activate all components and objects
+    private void ActivateAllComponentsAndObjects(GameObject parent)
+    {
+        foreach (Transform child in parent.transform)
+        {
+            child.gameObject.SetActive(true);
+
+            // Recursive call for child objects
+            ActivateAllComponentsAndObjects(child.gameObject);
+        }
+    }
+
+    // Function to get the total bounds size of a GameObject and its children
+    private Vector3 GetTotalBoundsSize(GameObject obj, bool includeInactive = false)
+    {
+        Renderer[] renderers = obj.GetComponentsInChildren<Renderer>(includeInactive);
+        Bounds bounds = new Bounds();
+
+        foreach (Renderer renderer in renderers)
+        {
+            bounds.Encapsulate(renderer.bounds);
+        }
+
+        return bounds.size;
     }
 
     private void GetFirstVector(GameObject sP)

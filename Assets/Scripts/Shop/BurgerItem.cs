@@ -28,33 +28,40 @@ public class BurgerItem : MonoBehaviour, IInteractable
     {
         if (CanInteract())
         {
-            // Calculate the amount to heal, considering max health
-            // Apply healing to the player
-            PlayerHealth.maxHealth += IncreaseHPBy;
-            PlayerHealth.currentHealth = PlayerHealth.maxHealth;
-            healthBar.SetValue(PlayerHealth.currentHealth);
-            GameObject playerObject = GameObject.FindWithTag("Player");
-            if (playerObject != null)
+            if (Coin.coins >= price)
             {
-                PlayerMovement playerMovement = playerObject.GetComponent<PlayerMovement>();
-
-                if (playerMovement != null)
+                PlayerHealth.maxHealth += IncreaseHPBy;
+                PlayerHealth.currentHealth = PlayerHealth.maxHealth;
+                healthBar.SetValue(PlayerHealth.currentHealth);
+                GameObject playerObject = GameObject.FindWithTag("Player");
+                if (playerObject != null)
                 {
-                    // Example: Call a method in PlayerMovement
-                    playerMovement.EditSpeed(DecreaseSpeedBy);
+                    PlayerMovement playerMovement = playerObject.GetComponent<PlayerMovement>();
 
+                    if (playerMovement != null)
+                    {
+                        // Example: Call a method in PlayerMovement
+                        playerMovement.EditSpeed(DecreaseSpeedBy);
+
+                    }
+                    else
+                    {
+                        Debug.LogError("PlayerMovement script not found on the player object.");
+                    }
                 }
                 else
                 {
-                    Debug.LogError("PlayerMovement script not found on the player object.");
+                    Debug.LogError("Player object not found with the 'Player' tag.");
                 }
+                PopupManager.Instance.ShowPopup(title, description, 2.5f);
+                Destroy(transform.parent.gameObject);
+                Coin.coins -= price;
+                Coin.UpdateCoinCountText();
             }
             else
             {
-                Debug.LogError("Player object not found with the 'Player' tag.");
+                PopupManager.Instance.ShowPopup("Not Enough Coins", "Collect More Coins", 2.5f);
             }
-            PopupManager.Instance.ShowPopup(title, description, 2.5f);
-            Destroy(transform.parent.gameObject);
         }
     }
 
