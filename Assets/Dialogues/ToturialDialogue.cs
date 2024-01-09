@@ -12,6 +12,12 @@ public class ToturialDialogue : MonoBehaviour
     public string[] lines;
     private int index;
     public float textSpeed;
+    [SerializeField]
+    private GameObject pills;
+    [SerializeField]
+    private GameObject tables;
+    [SerializeField]
+    private GameObject enemy;
     void Start()
     {
         dialogueText.text = string.Empty;
@@ -22,25 +28,48 @@ public class ToturialDialogue : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyUp(KeyCode.T))
-        {
+        {//when the typing is finished go to next line
             if(dialogueText.text == lines[index])
             {
                 NextLine();
+                WithFlow();
             }
             else
-            {
+            {//print all the letters immediatly
                 StopAllCoroutines();
                 dialogueText.text = lines[index];
             }
         }
     }
+    //active objects with the flow of dialogue
+    private void WithFlow()
+    {
+        switch (index)
+        {
+            case 4:
+                tables.SetActive(true);
+                break;
+                
+            case 5:
+                enemy.SetActive(true);
+                break;
 
+            case 6:
+                pills.SetActive(true);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    //starts the dialogue
     void startDialogue()
     {
         index = 0;
         StartCoroutine(TypeLine());
     }
-
+    //goes to next element
     void NextLine()
     {
         if (index < lines.Length -1)
@@ -51,37 +80,19 @@ public class ToturialDialogue : MonoBehaviour
             
         }
         else
-        {
+        {//if no more elemnts in lines[]
             dialoguePanel.SetActive(false);
         }
     }
     
-
+    //type writer effect
     IEnumerator TypeLine()
     {
         foreach(char c in lines[index].ToCharArray())
-        {
+        {//tpye one character at a time
             dialogueText.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
     }
 
 }
-/*void Start()
-{
-    textToFade = gameObject.GetComponent<Text>();
-    StartCoroutine(LerpFunction(targetColor, 5));
-}
-IEnumerator LerpFunction(Color endValue, float duration)
-{
-    float time = 0;
-    Color startValue = textToFade.color;
-    while (time < duration)
-    {
-        textToFade.color = Color.Lerp(startValue, endValue, time / duration);
-        time += Time.deltaTime;
-        yield return null;
-    }
-    textToFade.color = endValue;
-}
-*/
