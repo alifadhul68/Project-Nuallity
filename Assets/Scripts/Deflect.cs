@@ -10,7 +10,11 @@ public class Deflect : MonoBehaviour
     public bool isDeflecting = false;
     [SerializeField]
     public float deflectTime = 1f;
+    [SerializeField]
+    private float deflectCooldown = 2f;
     public GameObject gOb;
+
+    private float lastDeflectTime = -Mathf.Infinity; // Initialize to a time in the past
 
     //audio variable for deflect
     private AudioSource audioDeflect;
@@ -26,7 +30,7 @@ public class Deflect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1) && !isDeflecting && !PauseMenu.isPaused)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && Time.time >= lastDeflectTime + deflectCooldown && !isDeflecting && !PauseMenu.isPaused)
         {
             StartCoroutine(Deflecti());
         }
@@ -36,26 +40,20 @@ public class Deflect : MonoBehaviour
     {
         isDeflecting = true;
 
-        //partEmit.enabled = true;
         gOb.SetActive(true);
-
-        //enable the audio and play it
         audioDeflect.enabled = true;
         audioDeflect.Play();
 
         float startTime = Time.time;
         while (Time.time - startTime < deflectTime)
         {
-            //part.Emit(new ParticleSystem.EmitParams() 
-            //{ position = UnityEngine.Random.onUnitSphere}, 5);
             gOb.transform.Rotate(new Vector3(0.1f, 0.1f, 0.1f));
             yield return null;
         }
-        //disable the audio
-        audioDeflect.enabled = false;
 
-        //partEmit.enabled = false;
+        audioDeflect.enabled = false;
         gOb.SetActive(false);
+        lastDeflectTime = Time.time; // Set the timestamp for the last deflect
         isDeflecting = false;
     }
 
