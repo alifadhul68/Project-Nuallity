@@ -1678,7 +1678,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5257253440863811189, guid: 493bb0d341b41e74a99bfea29ee9a943, type: 3}
       propertyPath: m_Name
-      value: Coin HUD (1)
+      value: Level HUD
       objectReference: {fileID: 0}
     - target: {fileID: 9113050085185355686, guid: 493bb0d341b41e74a99bfea29ee9a943, type: 3}
       propertyPath: m_text
