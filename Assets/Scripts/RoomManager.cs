@@ -46,7 +46,7 @@ public class RoomManager : MonoBehaviour
                 GenerateRoom();
                 intraCheck = false;
 
-                Debug.Log("generated");
+                
             }
         }
 
@@ -56,7 +56,7 @@ public class RoomManager : MonoBehaviour
             {
                 if (intra.activeInHierarchy == true)
                 {
-                    Debug.Log("intra active");
+                    
                     intraCheck = true;
                     StartCoroutine(DeletePreviousRoom());
                 }
@@ -70,18 +70,18 @@ public class RoomManager : MonoBehaviour
     private void SelectTheme() { 
     
         int ind;
-        ind = UnityEngine.Random.Range(1,4);
+        ind = UnityEngine.Random.Range(1,5);
         //randomly select the theme of rooms
         switch (ind)
         {
             case 1:
-                selectedRooms = level4Rooms;
+                selectedRooms = level2Rooms;
                 break;
             case 2:
-                selectedRooms = level4Rooms;
+                selectedRooms = level2Rooms;
                 break;
             case 3:
-                selectedRooms = level4Rooms;
+                selectedRooms = level3Rooms;
                 break;
             case 4:
                 selectedRooms = level4Rooms;
@@ -104,13 +104,16 @@ public class RoomManager : MonoBehaviour
             shop.transform.localPosition = Vector3.zero;
             shop.transform.localPosition += new Vector3(0f,0f, roomZLegnth.z+(zShop/2));
             roomZLegnth.z += zShop;
-            Debug.Log("theme changed");
+            
             numOfRooms = UnityEngine.Random.Range(1, 1);
 
         }
+        int randomPrefabIndex;
         prevRoom = currentRoom;
         // Randomly choose a prefab from the selected array
-        int randomPrefabIndex = UnityEngine.Random.Range(0, selectedRooms.Length);
+        randomPrefabIndex = UnityEngine.Random.Range(0, selectedRooms.Length);
+        
+
         GameObject selectedPrefab = selectedRooms[randomPrefabIndex];
         if (firstTime == false)
             GetFirstVector(selectedPrefab);
@@ -162,8 +165,7 @@ public class RoomManager : MonoBehaviour
         {
             Destroy(prevRoom); // Destroy the current room GameObject
         }
-        else
-            Debug.Log("nothing");
+            
 
     }
 

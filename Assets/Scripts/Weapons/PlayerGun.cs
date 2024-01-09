@@ -151,7 +151,7 @@ public class PlayerGun : MonoBehaviour
                 if (damage != 0)
                 {
                     bullet.GetComponentInChildren<Projectile>().damage = (float)damage;
-                    Debug.Log(damage);
+                    //Debug.Log(damage);
                 }
             }
             ammoInMag -= 1;
