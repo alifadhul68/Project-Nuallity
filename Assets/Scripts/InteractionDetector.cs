@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,21 +6,19 @@ public class InteractionDetector : MonoBehaviour
 {
     private List<IInteractable> _interactablesInRange = new List<IInteractable>();
 
-
     // Update is called once per frame
     void Update()
     {
+        // Remove destroyed interactables from the list
+        _interactablesInRange.RemoveAll(item => item == null);
+
         if (Input.GetButtonDown("Interact") && _interactablesInRange.Count > 0)
         {
-
-            var interactable = _interactablesInRange[0];
-            if (!interactable.CanInteract())
+            var closestInteractable = FindClosestInteractable();
+            if (closestInteractable != null && closestInteractable.CanInteract())
             {
-                _interactablesInRange.Remove(interactable);
-            }
-            else
-            {
-                interactable.Interact();
+                closestInteractable.Interact();
+                _interactablesInRange.Remove(closestInteractable);
             }
         }
     }
@@ -31,7 +28,6 @@ public class InteractionDetector : MonoBehaviour
         var interactable = other.GetComponent<IInteractable>();
         if (interactable != null && interactable.CanInteract())
         {
-            
             _interactablesInRange.Add(interactable);
         }
     }
@@ -43,6 +39,26 @@ public class InteractionDetector : MonoBehaviour
         {
             _interactablesInRange.Remove(interactable);
         }
+    }
 
+    private IInteractable FindClosestInteractable()
+    {
+        float closestDistance = float.MaxValue;
+        IInteractable closestInteractable = null;
+
+        foreach (var interactable in _interactablesInRange)
+        {
+            if (interactable != null)
+            {
+                float distance = Vector3.Distance(transform.position, (interactable as MonoBehaviour).transform.position);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestInteractable = interactable;
+                }
+            }
+        }
+
+        return closestInteractable;
     }
 }
