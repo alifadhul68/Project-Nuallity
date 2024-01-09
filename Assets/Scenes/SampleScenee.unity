@@ -566,6 +566,14 @@ PrefabInstance:
       propertyPath: audioHit
       value: 
       objectReference: {fileID: 8300000, guid: 9365eb53947cd9346a82a76fc3e9ea6d, type: 3}
+    - target: {fileID: 6895516060566406141, guid: c77f0550bc5e5524d84bdeb6651ce2fa, type: 3}
+      propertyPath: endScreen
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6895516060566406141, guid: c77f0550bc5e5524d84bdeb6651ce2fa, type: 3}
+      propertyPath: deathScreen
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
