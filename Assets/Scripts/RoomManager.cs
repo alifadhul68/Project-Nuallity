@@ -75,16 +75,16 @@ public class RoomManager : MonoBehaviour
         switch (ind)
         {
             case 1:
-                selectedRooms = level2Rooms;
+                selectedRooms = level4Rooms;
                 break;
             case 2:
-                selectedRooms = level2Rooms;
+                selectedRooms = level4Rooms;
                 break;
             case 3:
-                selectedRooms = level3Rooms;
+                selectedRooms = level4Rooms;
                 break;
             case 4:
-                selectedRooms = level3Rooms;
+                selectedRooms = level4Rooms;
                 break;
             default:
                 print("kldem");
@@ -145,20 +145,6 @@ public class RoomManager : MonoBehaviour
             // Recursive call for child objects
             ActivateAllComponentsAndObjects(child.gameObject);
         }
-    }
-
-    // Function to get the total bounds size of a GameObject and its children
-    private Vector3 GetTotalBoundsSize(GameObject obj, bool includeInactive = false)
-    {
-        Renderer[] renderers = obj.GetComponentsInChildren<Renderer>(includeInactive);
-        Bounds bounds = new Bounds();
-
-        foreach (Renderer renderer in renderers)
-        {
-            bounds.Encapsulate(renderer.bounds);
-        }
-
-        return bounds.size;
     }
 
     private void GetFirstVector(GameObject sP)
