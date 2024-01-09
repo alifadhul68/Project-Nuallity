@@ -2626,7 +2626,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 335584062069160767, guid: 68616a1e5eccc1e46a97e8bc27c6965f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0.88
       objectReference: {fileID: 0}
     - target: {fileID: 335584062069160767, guid: 68616a1e5eccc1e46a97e8bc27c6965f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2671,6 +2671,34 @@ PrefabInstance:
     - target: {fileID: 4222052466497850297, guid: 68616a1e5eccc1e46a97e8bc27c6965f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621991588731116740, guid: 68616a1e5eccc1e46a97e8bc27c6965f, type: 3}
+      propertyPath: maxHealth
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621991588731116740, guid: 68616a1e5eccc1e46a97e8bc27c6965f, type: 3}
+      propertyPath: movementSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621991588731116740, guid: 68616a1e5eccc1e46a97e8bc27c6965f, type: 3}
+      propertyPath: attackCooldown
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621991588731116740, guid: 68616a1e5eccc1e46a97e8bc27c6965f, type: 3}
+      propertyPath: gunAttackRange
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8326955666956625726, guid: 68616a1e5eccc1e46a97e8bc27c6965f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0307
+      objectReference: {fileID: 0}
+    - target: {fileID: 8326955666956625726, guid: 68616a1e5eccc1e46a97e8bc27c6965f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.646
+      objectReference: {fileID: 0}
+    - target: {fileID: 8326955666956625726, guid: 68616a1e5eccc1e46a97e8bc27c6965f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.4485
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

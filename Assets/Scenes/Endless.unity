@@ -286,8 +286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49fbcd831a954d749874c588ffd821fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Snowy Abyss
-  description: Beware of the frozen spots
+  title: Endless
+  description: How far can you go.
 --- !u!114 &284890586
 MonoBehaviour:
   m_ObjectHideFlags: 0
