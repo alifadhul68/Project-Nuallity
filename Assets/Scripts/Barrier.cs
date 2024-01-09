@@ -11,7 +11,7 @@ public class Barrier : MonoBehaviour, IInteractable
     private int HP;
 
     [SerializeField]
-    Transform player;
+    public Transform player;
 
     void Start()
     {

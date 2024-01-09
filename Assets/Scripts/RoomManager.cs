@@ -128,6 +128,7 @@ public class RoomManager : MonoBehaviour
         intra = zone.Find("inter_trig").Find("interance").gameObject;        
         Renderer roomRenderer2 = currentRoom.GetComponentInChildren<Renderer>();
         roomZLegnth.z += roomRenderer2.bounds.size.z / 2;
+        AssignPlayerToAllBarriers();
 
         numOfRooms--;
         enemyIncrease++;
@@ -145,6 +146,7 @@ public class RoomManager : MonoBehaviour
             // Recursive call for child objects
             ActivateAllComponentsAndObjects(child.gameObject);
         }
+        
     }
 
     // Function to get the total bounds size of a GameObject and its children
@@ -181,6 +183,18 @@ public class RoomManager : MonoBehaviour
 
     }
 
-
+    private void AssignPlayerToAllBarriers()
+    {
+        GameObject[] tables = GameObject.FindGameObjectsWithTag("Barrier");
+        Transform player = GameObject.Find("Player").transform;
+        foreach (GameObject table in tables)
+        {
+            Barrier barrierScript = table.GetComponent<Barrier>();
+            if (barrierScript != null)
+            {
+                barrierScript.player = player; // Assuming Barrier script has a public Player property or field
+            }
+        }
+    }
 
 }
