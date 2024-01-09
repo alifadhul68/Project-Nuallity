@@ -39,7 +39,7 @@ public class HealingItem : MonoBehaviour, IInteractable
                 Debug.Log("Player healed for " + amountToHeal + " health.");
 
                 PopupManager.Instance.ShowPopup(title, description, 2.5f);
-                Destroy(transform.parent.gameObject);
+                transform.parent.gameObject.SetActive(false);
                 Coin.coins -= price;
                 Coin.UpdateCoinCountText();
             }
