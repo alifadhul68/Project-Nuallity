@@ -176,12 +176,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 6689260368837858556}
   detectionRange: 1000
-  attackRange: 50
-  gunAttackRange: 50
+  attackRange: 3
+  gunAttackRange: 8
   movementSpeed: 3
   attackCooldown: 2
   maxHealth: 8
   powerupPrefabs: []
+  coin: {fileID: 0}
 --- !u!82 &130538783981400876
 AudioSource:
   m_ObjectHideFlags: 0

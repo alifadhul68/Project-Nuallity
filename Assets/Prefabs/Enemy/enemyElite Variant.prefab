@@ -210,8 +210,9 @@ MonoBehaviour:
   gunAttackRange: 50
   movementSpeed: 0
   attackCooldown: 1
-  maxHealth: 100
+  maxHealth: 25
   powerupPrefabs: []
+  coin: {fileID: 0}
 --- !u!82 &9054923579548631950
 AudioSource:
   m_ObjectHideFlags: 0
