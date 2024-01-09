@@ -94,6 +94,12 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    public void EditSpeed(float speed)
+    {
+        this.movementSpeed += speed;
+        this.dashSpeed += speed;
+    }
+
     void handlePlayerInput()
     {
         float _horizontal = Input.GetAxis("Horizontal");

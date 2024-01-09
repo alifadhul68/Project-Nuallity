@@ -9,7 +9,7 @@ public class PlayerHealth : MonoBehaviour
     public static int currentHealth = maxHealth;
     private Animator animator;
     private HealthBar healthBar;
-    
+    [SerializeField] public GameObject endScreen;
     private AudioSource audioC;
     public AudioClip audioHit;
     void Start()
@@ -51,6 +51,7 @@ public class PlayerHealth : MonoBehaviour
         animator.SetBool("isDead", true);
         // Start the coroutine to handle post-death actions
         StartCoroutine(PostDeathActions());
+        endScreen.SetActive(true);
     }
 
     IEnumerator PostDeathActions()

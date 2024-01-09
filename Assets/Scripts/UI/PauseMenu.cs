@@ -15,7 +15,7 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!PlayerIsDead() && Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPaused)
             {
@@ -48,5 +48,10 @@ public class PauseMenu : MonoBehaviour
     {
         Resume();
         SceneManager.LoadScene("Manin Menu");
+    }
+
+    private bool PlayerIsDead()
+    {
+        return PlayerHealth.currentHealth <= 0;
     }
 }
