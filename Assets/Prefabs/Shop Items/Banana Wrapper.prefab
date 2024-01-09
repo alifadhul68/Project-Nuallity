@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0301, y: 0.1241}
+  m_AnchoredPosition: {x: 0, y: -1}
   m_SizeDelta: {x: 1.814, y: 3.1002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4254155274196386339
@@ -161,13 +161,13 @@ Transform:
   m_GameObject: {fileID: 4353631367276423128}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.06, y: 5.044, z: -6.539}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 20, y: 20, z: 16.666668}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2486108865124938860}
   - {fileID: 5803896628208583399}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &3845401620417798908
 BoxCollider:
@@ -217,7 +217,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6353383803793924889}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 5.1387}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -227,7 +227,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.8628, y: -4.88}
+  m_AnchoredPosition: {x: 0, y: -1}
   m_SizeDelta: {x: 0.9668, y: 3.1346}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3670281791320955000
@@ -319,15 +319,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 525247808296332027, guid: 148f39c355dbcd342a77c5edbfb43792, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.8925834
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 525247808296332027, guid: 148f39c355dbcd342a77c5edbfb43792, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.452672
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 525247808296332027, guid: 148f39c355dbcd342a77c5edbfb43792, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.569805
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 525247808296332027, guid: 148f39c355dbcd342a77c5edbfb43792, type: 3}
       propertyPath: m_LocalRotation.w
