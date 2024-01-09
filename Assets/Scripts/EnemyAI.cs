@@ -29,6 +29,7 @@ public class EnemyAI : MonoBehaviour
     private bool isMoving = true; // Flag to control movement
 
     public GameObject[] powerupPrefabs;
+    public GameObject coin;
     private bool powerupsLoaded = false;
     //audio variable for death
     private AudioSource audioDestroy;
@@ -53,6 +54,7 @@ public class EnemyAI : MonoBehaviour
             LoadPowerupPrefabs();
             powerupsLoaded = true;
         }
+        coin = Resources.Load<GameObject>("Prefabs/Coin");
     }
 
     void Update()
@@ -200,19 +202,45 @@ public class EnemyAI : MonoBehaviour
     {
         // Wait for the death animation to complete
         yield return new WaitForSeconds(1.5f);
-        // Determine whether to drop a powerup (25% chance)
-        if (UnityEngine.Random.value < 0.25f)
-        {
-            // Choose a random powerup prefab from the list
-            int randomPowerupIndex = UnityEngine.Random.Range(0, powerupPrefabs.Length);
-            GameObject powerupPrefab = powerupPrefabs[randomPowerupIndex];
 
-            // Instantiate the powerup at the enemy's position
-            Instantiate(powerupPrefab, transform.position, Quaternion.identity);
+        // Check if the scene name is "Endless"
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Endless")
+        {
+            // Determine whether to drop a coin or powerup (25% chance for each)
+            float randomValue = UnityEngine.Random.value;
+            if (randomValue < 0.25f)
+            {
+                // Choose a random powerup prefab from the list
+                int randomPowerupIndex = UnityEngine.Random.Range(0, powerupPrefabs.Length);
+                GameObject powerupPrefab = powerupPrefabs[randomPowerupIndex];
+
+                // Instantiate the powerup at the enemy's position
+                Instantiate(powerupPrefab, transform.position, Quaternion.identity);
+            }
+            else if (randomValue < 0.5f)
+            {
+                // Instantiate the coin prefab at the enemy's position
+                Instantiate(coin, transform.position, Quaternion.identity);
+            }
         }
+        else
+        {
+            // For other scenes, drop a powerup with a 25% chance
+            if (UnityEngine.Random.value < 0.25f)
+            {
+                // Choose a random powerup prefab from the list
+                int randomPowerupIndex = UnityEngine.Random.Range(0, powerupPrefabs.Length);
+                GameObject powerupPrefab = powerupPrefabs[randomPowerupIndex];
+
+                // Instantiate the powerup at the enemy's position
+                Instantiate(powerupPrefab, transform.position, Quaternion.identity);
+            }
+        }
+
         // Now that the animation is done, remove the game object from the screen
         Destroy(gameObject);
     }
 
-    
+
+
 }

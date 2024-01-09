@@ -34,24 +34,33 @@ public class BananaItem : MonoBehaviour, IInteractable
     {
         if (CanInteract())
         {
-            PlayerHealth.currentHealth = newPlayerHP;
-            PlayerHealth.maxHealth = newPlayerHP;
-            healthBar.SetValue(PlayerHealth.currentHealth);
-            PlayerGun playerGun = PlayerGun.Instance;
-            playerGun.damage *= multiplyDmgBy;
-            playerGun.travelTime += increaseRangeBy;
-            playerGun.fireRate *= multiplyFireRate;
-            playerGun.reloadTime -= decreaseReloadTimeBy;
-            playerGun.spread -= decreaseSpreadBy;
-            playerGun.bullets *= multiplyBulletsBy;
-            PopupManager.Instance.ShowPopup(title, description, 2.5f);
-            Destroy(transform.parent.gameObject);
+            if (Coin.coins >= price)
+            {
+                PlayerHealth.currentHealth = newPlayerHP;
+                PlayerHealth.maxHealth = newPlayerHP;
+                healthBar.SetValue(PlayerHealth.currentHealth);
+                PlayerGun playerGun = PlayerGun.Instance;
+                playerGun.damage *= multiplyDmgBy;
+                playerGun.travelTime += increaseRangeBy;
+                playerGun.fireRate *= multiplyFireRate;
+                playerGun.reloadTime -= decreaseReloadTimeBy;
+                playerGun.spread -= decreaseSpreadBy;
+                playerGun.bullets *= multiplyBulletsBy;
+                PopupManager.Instance.ShowPopup(title, description, 2.5f);
+                Destroy(transform.parent.gameObject);
+                Coin.coins -= price;
+                Coin.UpdateCoinCountText();
+            }
+            else {
+                Debug.Log("ff");
+                PopupManager.Instance.ShowPopup("Not Enough Coins", "Collect More Coins", 2.5f);
+            }
         }
+        
     }
 
     public bool CanInteract()
     {
-        // Add conditions if the item can be bought
         return true;
     }
 }
