@@ -15,17 +15,19 @@ public class RoomManager : MonoBehaviour
     private float startingSize = 35.61682f + 29.54305f;
     private int numOfRooms;
     private Vector3 roomZLegnth;
-
     private GameObject currentRoom; // Reference to the current room
     private GameObject prevRoom; // Reference to the previuos room   
     private GameObject intra;
     private bool intraCheck;
     private bool firstTime = false;
+    private int enemyIncrease;
+    [SerializeField]
+    private GameObject shop;
     private void Start()
     {
-
+        enemyIncrease = 1;
         intraCheck = false;
-        numOfRooms = UnityEngine.Random.Range(5, 7);
+        numOfRooms = UnityEngine.Random.Range(1, 1);
         SelectTheme();//select the prefabs theme
         GenerateRoom(); // Generate the initial room
         
@@ -92,7 +94,11 @@ public class RoomManager : MonoBehaviour
         if (numOfRooms <= 0)
         {
             //change the room theme
-            SelectTheme();            
+            SelectTheme();
+            float zShop = shop.transform.Find("Plane").GetComponent<Renderer>().bounds.size.z;
+            shop.transform.localPosition = Vector3.zero;
+            shop.transform.localPosition += new Vector3(0f,0f, roomZLegnth.z+(zShop/2));
+            roomZLegnth.z += zShop;
             Debug.Log("theme changed");
             numOfRooms = UnityEngine.Random.Range(1, 1);
 
@@ -111,13 +117,15 @@ public class RoomManager : MonoBehaviour
 
         // Instantiate the selected prefab as the current room
         currentRoom = Instantiate(selectedPrefab, roomZLegnth, Quaternion.identity);
-        intra = currentRoom.transform.Find("zone").Find("inter_trig").Find("interance").gameObject;
-        //intra = currentRoom.transform.Find("exit").gameObject;
+        Transform zone = currentRoom.transform.Find("zone");
+        EnemySpawn s = zone.GetComponent<EnemySpawn>();
+        s.nomOfEnemy += enemyIncrease;
+        intra = zone.Find("inter_trig").Find("interance").gameObject;        
         Renderer roomRenderer2 = currentRoom.GetComponentInChildren<Renderer>();
         roomZLegnth.z += roomRenderer2.bounds.size.z / 2;
 
         numOfRooms--;
-
+        enemyIncrease++;
     }
 
     private void GetFirstVector(GameObject sP)
