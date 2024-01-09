@@ -47,7 +47,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Player died");
+        //Debug.Log("Player died");
         animator.SetBool("isDead", true);
         // Start the coroutine to handle post-death actions
         StartCoroutine(PostDeathActions());
