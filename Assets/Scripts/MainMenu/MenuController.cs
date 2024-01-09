@@ -30,6 +30,7 @@ public class MenuController : MonoBehaviour
     private bool _isFullScreen;
     private float _brightnessLevel;
 
+
     void Start()
     {
         brightnessProfile.TryGetSettings(out exposure);
@@ -66,7 +67,6 @@ public class MenuController : MonoBehaviour
                 brightnessSlider.value = defaultBrightness;
                 brightnesseTextValue.text = defaultBrightness.ToString("0.0");
                 _isFullScreen = true;
-                Screen.fullScreen = true;
                 fullScreenTOggle.isOn = true;
                 GraphicsApply();
                 break;
@@ -90,13 +90,18 @@ public class MenuController : MonoBehaviour
 
     public void GraphicsApply()
     {
+        SetFullScreen(fullScreenTOggle.isOn);
+
         PlayerPrefs.SetFloat("masterBrightness", _brightnessLevel);
 
-        PlayerPrefs.SetInt("masterFullScreen", (_isFullScreen ? 1 :0));
+        PlayerPrefs.SetInt("masterFullScreen", (_isFullScreen ? 1 : 0));
+        
+        ToggleFullscreen(_isFullScreen);
 
-        Screen.fullScreen = _isFullScreen;
         exposure.keyValue.value = _brightnessLevel;
-
-        Debug.Log("Brightness after setting: " + Screen.brightness);
+    }
+    public void ToggleFullscreen(bool fullscreen)
+    {
+        Screen.fullScreen = fullscreen;
     }
 }

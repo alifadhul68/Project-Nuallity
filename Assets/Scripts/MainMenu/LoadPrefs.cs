@@ -63,7 +63,7 @@ public class LoadPrefs : MonoBehaviour
             else
             {
                 Screen.fullScreen = false;
-                fullScreenTOggle.isOn = true;
+                fullScreenTOggle.isOn = false;
             }
         }
         else
