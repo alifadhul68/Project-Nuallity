@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3878,10 +3878,70 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5751738033583939, guid: ebc3d060fd9da4d4b8b2a2c1fdf9015a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 154893838879030144, guid: ebc3d060fd9da4d4b8b2a2c1fdf9015a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1309002813454445819, guid: ebc3d060fd9da4d4b8b2a2c1fdf9015a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 21c505286c5bbe045a472bee261889e8, type: 2}
     - target: {fileID: 1416879716860707268, guid: ebc3d060fd9da4d4b8b2a2c1fdf9015a, type: 3}
       propertyPath: m_Name
       value: Shop
       objectReference: {fileID: 0}
+    - target: {fileID: 1866454323871099549, guid: ebc3d060fd9da4d4b8b2a2c1fdf9015a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3a420a8e3cc3c8d47b6b4e98beedf04a, type: 2}
+    - target: {fileID: 2005472227143116382, guid: ebc3d060fd9da4d4b8b2a2c1fdf9015a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3a420a8e3cc3c8d47b6b4e98beedf04a, type: 2}
+    - target: {fileID: 4651830365208775253, guid: ebc3d060fd9da4d4b8b2a2c1fdf9015a, type: 3}
+      propertyPath: m_colorMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651830365208775253, guid: ebc3d060fd9da4d4b8b2a2c1fdf9015a, type: 3}
+      propertyPath: m_fontColorGradient.topLeft.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651830365208775253, guid: ebc3d060fd9da4d4b8b2a2c1fdf9015a, type: 3}
+      propertyPath: m_fontColorGradient.topRight.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651830365208775253, guid: ebc3d060fd9da4d4b8b2a2c1fdf9015a, type: 3}
+      propertyPath: m_fontColorGradient.topRight.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651830365208775253, guid: ebc3d060fd9da4d4b8b2a2c1fdf9015a, type: 3}
+      propertyPath: m_fontColorGradient.bottomLeft.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651830365208775253, guid: ebc3d060fd9da4d4b8b2a2c1fdf9015a, type: 3}
+      propertyPath: m_fontColorGradient.bottomLeft.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651830365208775253, guid: ebc3d060fd9da4d4b8b2a2c1fdf9015a, type: 3}
+      propertyPath: m_fontColorGradient.bottomRight.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651830365208775253, guid: ebc3d060fd9da4d4b8b2a2c1fdf9015a, type: 3}
+      propertyPath: m_fontColorGradient.bottomRight.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6965683748892360466, guid: ebc3d060fd9da4d4b8b2a2c1fdf9015a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3a420a8e3cc3c8d47b6b4e98beedf04a, type: 2}
+    - target: {fileID: 7379050683350576927, guid: ebc3d060fd9da4d4b8b2a2c1fdf9015a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3a420a8e3cc3c8d47b6b4e98beedf04a, type: 2}
     - target: {fileID: 8068059239577620848, guid: ebc3d060fd9da4d4b8b2a2c1fdf9015a, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -3925,6 +3985,14 @@ PrefabInstance:
     - target: {fileID: 8068059239577620848, guid: ebc3d060fd9da4d4b8b2a2c1fdf9015a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8744162039853851340, guid: ebc3d060fd9da4d4b8b2a2c1fdf9015a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193310278253015745, guid: ebc3d060fd9da4d4b8b2a2c1fdf9015a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
