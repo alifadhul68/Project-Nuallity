@@ -9,7 +9,7 @@ public class DeathZone : MonoBehaviour
     {
         if (other.CompareTag("Player")) // Check if the player enters the trigger
         {
-            SceneManager.LoadScene("Manin Menu");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

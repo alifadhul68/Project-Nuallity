@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 133755081307752306}
   m_Layer: 0
   m_Name: InteractionDetector
-  m_TagString: Player
+  m_TagString: PlayerDetector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -636,7 +636,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4957605393579145646, guid: 4f46098734d87e24490aef9267915ad2, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 4957605393579145646, guid: 4f46098734d87e24490aef9267915ad2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -779,6 +779,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   part: {fileID: 7596596728198930401}
+  audioDash: {fileID: 0}
 --- !u!114 &6895516060566406141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -791,6 +792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f4a2020120a1ef498d28b0ef0fd909a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioHit: {fileID: 0}
 --- !u!54 &4121441391535775506
 Rigidbody:
   m_ObjectHideFlags: 0
