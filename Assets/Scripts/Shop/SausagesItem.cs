@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class YogurtItem : MonoBehaviour, IInteractable
+public class SausagesItem : MonoBehaviour, IInteractable
 {
-    public int increaseHPBy = 10;
+    public float increaseDmgBy = 0.5f;
     private HealthBar healthBar;
-    private string title = "Yogurt";
-    private string description = "Max HP increased... You do not feel full";
-    [SerializeField] public int price = 3;
+    private string title = "Sausages";
+    private string description = "Damage Up";
+    [SerializeField] public int price = 7;
     [SerializeField] private TMP_Text priceText;
 
     void Start()
@@ -29,8 +29,8 @@ public class YogurtItem : MonoBehaviour, IInteractable
         {
             // Calculate the amount to heal, considering max health
             // Apply healing to the player
-            PlayerHealth.maxHealth += increaseHPBy;
-            healthBar.SetValue(PlayerHealth.currentHealth);
+            PlayerGun playerGun = PlayerGun.Instance;
+            playerGun.damage += increaseDmgBy;
             PopupManager.Instance.ShowPopup(title, description, 2.5f);
             Destroy(transform.parent.gameObject);
         }
