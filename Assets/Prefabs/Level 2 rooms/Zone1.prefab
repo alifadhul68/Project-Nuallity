@@ -12741,7 +12741,7 @@ MonoBehaviour:
   intra: {fileID: 2162091411015918468}
   exit: {fileID: 1068381455155404058}
   elite: {fileID: 0}
-  nomOfEnemy: 10
+  nomOfEnemy: 3
   enemies:
   - {fileID: 559212810372451990, guid: c7c205a8e05695346919caf0a9b48fc5, type: 3}
   - {fileID: 4115409849673912781, guid: d1013b77434b0d54dab20298e757cd0c, type: 3}
