@@ -28,6 +28,8 @@ public class EnemyAI : MonoBehaviour
 
     private bool isMoving = true; // Flag to control movement
 
+    public GameObject[] powerupPrefabs;
+    private bool powerupsLoaded = false;
     //audio variable for death
     private AudioSource audioDestroy;
     private Gun gun;
@@ -45,6 +47,11 @@ public class EnemyAI : MonoBehaviour
         if (gun != null)
         {
             attackRange = gunAttackRange;
+        }
+        if (!powerupsLoaded)
+        {
+            LoadPowerupPrefabs();
+            powerupsLoaded = true;
         }
     }
 
@@ -106,6 +113,12 @@ public class EnemyAI : MonoBehaviour
         {
             MeleeAttack();
         }
+    }
+
+    void LoadPowerupPrefabs()
+    {
+        // Load powerup prefabs from the Resources folder
+        powerupPrefabs = Resources.LoadAll<GameObject>("Prefabs/Powerups");
     }
 
     void MeleeAttack()
@@ -187,7 +200,16 @@ public class EnemyAI : MonoBehaviour
     {
         // Wait for the death animation to complete
         yield return new WaitForSeconds(1.5f);
+        // Determine whether to drop a powerup (25% chance)
+        if (UnityEngine.Random.value < 0.25f)
+        {
+            // Choose a random powerup prefab from the list
+            int randomPowerupIndex = UnityEngine.Random.Range(0, powerupPrefabs.Length);
+            GameObject powerupPrefab = powerupPrefabs[randomPowerupIndex];
 
+            // Instantiate the powerup at the enemy's position
+            Instantiate(powerupPrefab, transform.position, Quaternion.identity);
+        }
         // Now that the animation is done, remove the game object from the screen
         Destroy(gameObject);
     }
