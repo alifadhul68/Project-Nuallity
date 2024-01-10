@@ -31,7 +31,7 @@ public class RoomManager : MonoBehaviour
         levelCountText = GameObject.Find("Level HUD").GetComponentInChildren<TMP_Text>();
         enemyIncrease = 1;
         intraCheck = false;
-        numOfRooms = UnityEngine.Random.Range(1, 1);
+        numOfRooms = UnityEngine.Random.Range(5, 8);
         SelectTheme();//select the prefabs theme
         GenerateRoom(); // Generate the initial room
         
@@ -75,7 +75,7 @@ public class RoomManager : MonoBehaviour
         switch (ind)
         {
             case 1:
-                selectedRooms = level2Rooms;
+                selectedRooms = level1Rooms;
                 break;
             case 2:
                 selectedRooms = level2Rooms;
@@ -105,7 +105,7 @@ public class RoomManager : MonoBehaviour
             shop.transform.localPosition += new Vector3(0f,0f, roomZLegnth.z+(zShop/2));
             roomZLegnth.z += zShop;
             
-            numOfRooms = UnityEngine.Random.Range(1, 1);
+            numOfRooms = UnityEngine.Random.Range(5, 8);
 
         }
         int randomPrefabIndex;
