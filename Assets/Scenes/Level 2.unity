@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.65316075, g: 0.6369398, b: 0.7381392, a: 1}
+  m_IndirectSpecularColor: {r: 0.6531624, g: 0.63693994, b: 0.73814017, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8335,7 +8335,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 608047601871861209, guid: c77f0550bc5e5524d84bdeb6651ce2fa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.505
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 608047601871861209, guid: c77f0550bc5e5524d84bdeb6651ce2fa, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8397,6 +8397,10 @@ PrefabInstance:
       propertyPath: audioHit
       value: 
       objectReference: {fileID: 8300000, guid: 9365eb53947cd9346a82a76fc3e9ea6d, type: 3}
+    - target: {fileID: 6895516060566406141, guid: c77f0550bc5e5524d84bdeb6651ce2fa, type: 3}
+      propertyPath: endScreen
+      value: 
+      objectReference: {fileID: 606510703}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9374,6 +9378,10 @@ PrefabInstance:
       propertyPath: exit
       value: 
       objectReference: {fileID: 337188400}
+    - target: {fileID: 8310922605635565213, guid: 06d2c24efc2bea547bfade0e19071c2f, type: 3}
+      propertyPath: elite
+      value: 
+      objectReference: {fileID: 928042475585403022, guid: d0027bbb5efe4fa48a4406b086f51bb5, type: 3}
     - target: {fileID: 8310922605635565213, guid: 06d2c24efc2bea547bfade0e19071c2f, type: 3}
       propertyPath: enemies.Array.size
       value: 0
