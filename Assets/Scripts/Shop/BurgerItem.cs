@@ -28,6 +28,7 @@ public class BurgerItem : MonoBehaviour, IInteractable
     {
         if (CanInteract())
         {
+            // Check if the player has enough coins to purchase
             if (Coin.coins >= price)
             {
                 PlayerHealth.maxHealth += IncreaseHPBy;

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    [SerializeField] 
+    [SerializeField]
     private RectTransform barRect;
     [SerializeField]
     private RectMask2D mask;
@@ -15,27 +15,36 @@ public class HealthBar : MonoBehaviour
 
     private float maxRightMsk;
     private float initialRightMsk;
+
     // Start is called before the first frame update
     void Start()
     {
+        // Calculate the maximum right mask position and the initial right mask position
         maxRightMsk = barRect.rect.width - mask.padding.x - mask.padding.z;
+
+        // Set the initial text for the health indicator
         hpIndicator.SetText($"{PlayerHealth.currentHealth}/{PlayerHealth.maxHealth}");
+
+        // Set the initial right mask position
         initialRightMsk = mask.padding.z;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
+    // Set the health bar value and update the mask and text accordingly
     public void SetValue(int newValue)
     {
-        var tagetWithWidth = newValue * maxRightMsk / PlayerHealth.maxHealth;
-        var newRightMask = maxRightMsk + initialRightMsk - tagetWithWidth;
+        // Calculate the target width for the mask based on the new value
+        var targetWidth = newValue * maxRightMsk / PlayerHealth.maxHealth;
+
+        // Calculate the new right position for the mask
+        var newRightMask = maxRightMsk + initialRightMsk - targetWidth;
+
+        // Update the padding of the mask
         var padding = mask.padding;
         padding.z = newRightMask;
         mask.padding = padding;
+
+        // Update the text of the health indicator
         hpIndicator.SetText($"{newValue}/{PlayerHealth.maxHealth}");
     }
 }
