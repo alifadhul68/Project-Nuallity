@@ -36,7 +36,10 @@ public class PlayerOxygen : MonoBehaviour
         {
             isInOxygenArea = true;
             oxygenDrainCoroutine = StartCoroutine(DrainOxygenContinuously());
-            StopCoroutine(oxygenIncreaseCoroutine);
+            if (oxygenIncreaseCoroutine != null)
+            {
+                StopCoroutine(oxygenIncreaseCoroutine);
+            }
         }
     }
 
