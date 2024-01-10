@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
+//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
+//using static UnityEngine.Rendering.DebugUI;
 
 public class ToturialDialogue : MonoBehaviour
 {
@@ -21,6 +21,8 @@ public class ToturialDialogue : MonoBehaviour
     private GameObject tables;
     [SerializeField]
     private GameObject enemy;
+    [SerializeField]
+    private GameObject portal;
     void Start()
     {
         dialogueText.text = string.Empty;
@@ -59,6 +61,9 @@ public class ToturialDialogue : MonoBehaviour
 
             case 7:
                 pills.SetActive(true);
+                break;
+            case 9:
+                portal.SetActive(true);
                 break;
 
             default:
