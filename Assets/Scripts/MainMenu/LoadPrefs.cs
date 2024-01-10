@@ -43,9 +43,12 @@ public class LoadPrefs : MonoBehaviour
         if (PlayerPrefs.HasKey("masterBrightness"))
         {
             float localBrightness = PlayerPrefs.GetFloat("masterBrightness");
+            if (localBrightness < 0.2)
+                localBrightness = 0.2f;
             brightnesseTextValue.text = localBrightness.ToString("0.0");
             brightnessSlider.value = localBrightness;
             exposure.keyValue.value = localBrightness;
+            
         }
         else
         {
