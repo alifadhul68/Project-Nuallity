@@ -45,13 +45,13 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    void Die()
+    public void Die()
     {
         //Debug.Log("Player died");
         animator.SetBool("isDead", true);
         // Start the coroutine to handle post-death actions
         StartCoroutine(PostDeathActions());
-        endScreen.SetActive(true);
+        
     }
 
     IEnumerator PostDeathActions()
@@ -61,7 +61,7 @@ public class PlayerHealth : MonoBehaviour
 
         // Remove the player from the screen
         gameObject.SetActive(false);
-
+        endScreen.SetActive(true);
 
         // Load the main menu scene
         //SceneManager.LoadScene("Manin Menu");
