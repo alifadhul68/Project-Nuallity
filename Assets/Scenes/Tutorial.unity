@@ -1375,7 +1375,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 891243163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7cebc663fa1c1d4f93ee54bc9a8ceb5, type: 3}
+  m_Script: {fileID: 11500000, guid: aa160cbd91269244d9ee6a0957af0f2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueText: {fileID: 914504271}
@@ -1383,7 +1383,8 @@ MonoBehaviour:
   dialoguePanel: {fileID: 305007971}
   lines:
   - NICE!
-  - Hello, how ya' doing... wait no. Hello nice to meet you. I am your guide in the
+  - You have to proceed with the dialogue progress further
+  - Hello, how ya' doing... wait no. Hello nice to meet you. I am your guide in the    
     game. My name is CRISTOS COLUMBUS. You know, I am his brother.
   - well enough with the chitchat. Let's start with your movements... Like anyother
     normal game. WASD is the movement keys.
@@ -1393,9 +1394,8 @@ MonoBehaviour:
   - Watch out. enemy incoming. kill it.
   - use these powerups to get boosts.
   - Green for healing, yellow for speed and red for damage.
-  - Well, now you are ready to venture.
-  - Crispy.
-  textSpeed: 0.05
+  - ' Well, now you are ready to venture.'
+  textSpeed: 0
   pills: {fileID: 452219049}
   tables: {fileID: 679741158}
   enemy: {fileID: 1100819450}
