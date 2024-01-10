@@ -205,9 +205,9 @@ public class PlayerGun : MonoBehaviour
 
         // order: fire rate, reload time, spread, max ammo, bullets shot per click, [optionals]> travel time, speedSpread, damage
         GunPreset[] presets = new GunPreset[3] {
-            new GunPreset(0.2f, 0.9f, 4.5f, 9, 1, "pistol", 0, false, 0.5f),
-            new GunPreset(0.05f, 1.8f, 10f, 22, 1, "submachine", 0, false, 0.3f),
-            new GunPreset(0.3f, 1.5f, 13f, 2, 6, "sawedoff", 0.5f, true, 0.4f)
+            new GunPreset(0.2f, 0.9f, 4.5f, 9, 1, "pistol", 0, false, 2.0f),
+            new GunPreset(0.05f, 1.8f, 10f, 22, 1, "submachine", 0, false, 1.2f),
+            new GunPreset(0.3f, 1.5f, 13f, 2, 6, "sawedoff", 0.5f, true, 1.5f)
         };
 
         foreach (GunPreset preset in presets)
