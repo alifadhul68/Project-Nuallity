@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BananaItem : MonoBehaviour, IInteractable
 {
+    // Modifiers for the player's attributes
     public float multiplyDmgBy = 2f;
     public float increaseRangeBy = 2f;
     public int newPlayerHP = 10;
@@ -13,18 +14,23 @@ public class BananaItem : MonoBehaviour, IInteractable
     public float decreaseSpreadBy = 0.2f;
     public int multiplyBulletsBy = 2;
 
+    // Reference to the HealthBar script
     private HealthBar healthBar;
+    // Item details
     private string title = "Banana";
     private string description = "You feel Like a Glass-Cannon";
+    // Price and UI text for the price
     [SerializeField] public int price = 10;
     [SerializeField] private TMP_Text priceText;
 
     void Start()
     {
+        // Find the HealthBar in the scene
         GameObject healthBarObject = GameObject.Find("HealthBar");
         healthBar = healthBarObject.GetComponent<HealthBar>();
         if (healthBar == null)
         {
+            // Log an error if HealthBar script is not found
             Debug.LogError("HealthBar script not found in the scene.");
         }
         // Set the price text
@@ -34,6 +40,7 @@ public class BananaItem : MonoBehaviour, IInteractable
     {
         if (CanInteract())
         {
+            // Check if the player has enough coins to purchase
             if (Coin.coins >= price)
             {
                 PlayerHealth.currentHealth = newPlayerHP;

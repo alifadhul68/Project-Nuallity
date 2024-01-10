@@ -25,6 +25,7 @@ public class YogurtItem : MonoBehaviour, IInteractable
     }
     public void Interact()
     {
+        // Check if the player has enough coins to purchase
         if (CanInteract())
         {
             if (Coin.coins >= price)
