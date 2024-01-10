@@ -35,9 +35,5 @@ public class Portal : MonoBehaviour
             PauseMenu.isPaused = true;
             reloadIndicator.gameObject.SetActive(false);
         }
-        else
-        {
-            Debug.Log("error");
-        }
     }
 }
